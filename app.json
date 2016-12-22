@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/myorg/myorg",
-    "pages/orgpk/orgpk"
+    "pages/orgpk/orgpk",
+    "pages/mine/mine"
   ],
   "window":{
     "backgroundTextStyle":"light",

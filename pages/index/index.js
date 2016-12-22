@@ -28,6 +28,13 @@ Page({
     })
     
   },
+  onShareAppMessage: function () {
+    return {
+      title: '陪你跑 发动',
+      desc: '让我们一起跑起来吧!',
+      path: '/page/index'
+    }
+  },
   onLoad: function () {
     console.log('onLoad')
     var that = this

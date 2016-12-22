@@ -11,7 +11,7 @@
 </view>
 <!-- 封面图片结束 -->
 <!-- 我的数据开始 -->
-<view class="mydata data_list">
+<view class="mydata data_list" bindtap="tomine">
 	<view class="myinfobox">
 		<image class="avatar" src="{{mydata.avatar}}"></image>
 		<view class="myinfo">

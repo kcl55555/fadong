@@ -1,0 +1,30 @@
+<!--index.wxml-->
+<view class="container">
+	<!-- 封面图片 -->
+<view class="cover data_today">
+ <image class="coverpic" src="/src/cover_pic.jpg"></image>
+ <view class="coveravatar">
+ 	<image  src="/src/coveravatar.png"></image>
+ </view>	 	
+</view>
+<view class="maindata">
+	<text class="border_right">今日2534步</text>
+	<text>本月12345步</text>
+</view>
+
+<view class="ham_num" wx:if="{{hum_num<=4 }}">
+	<block wx:for="{{hum_num}}" >
+		<image src="/src/hambugger.png"></image>
+	</block>
+	<image class="half_hum" src="/src/hambugger.png" wx:if="{{half_hum}}"></image>
+</view>
+<view class="ham_num_big" wx:else>
+	<block wx:for="{{hum_num}}" >
+		<image src="/src/hambugger.png"></image>
+	</block>
+	<image class="half_hum" src="/src/hambugger.png" wx:if="{{half_hum}}"></image>
+</view>
+ <text>今日消耗了</text>
+ <text>{{hum_num}}<text wx:if="{{half_hum}}">.5</text>个巨无霸</text>
+
+</view>

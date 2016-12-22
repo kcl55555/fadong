@@ -73,6 +73,11 @@ Page({
       url: '../logs/logs'
     })
   },
+  tomine: function() {
+    wx.navigateTo({
+      url: '../mine/mine'
+    })
+  },
   showToday:function(){
     this.setData({
       show:1,
