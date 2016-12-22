@@ -1,0 +1,121 @@
+<!--index.wxml-->
+<view class="container">
+<block wx:if="{{show}}">
+	<!-- 封面图片 -->
+<view class="cover data_today">
+ <image class="coverpic" src="/src/cover_pic.jpg"></image>
+ <view class="coveravatar">
+ 	<image  src="/src/coveravatar.png"></image>
+ 	<text>阿里云占领了封面</text>
+ </view>	 	
+</view>
+<!-- 封面图片结束 -->
+<!-- 我的数据开始 -->
+<view class="mydata data_list">
+	<view class="myinfobox">
+		<image class="avatar" src="{{mydata.avatar}}"></image>
+		<view class="myinfo">
+			<text class="nickname">{{mydata.nickName}}</text>
+			<text class="mygrade">第{{mydata.grade}}名</text>
+		</view>
+	</view>
+	<view class="databox">
+		<text  class="steps stepsyellow" wx:if="{{mydata.steps >= 10000}}">{{mydata.steps}}</text>
+		<text  class="steps stepsgreen" wx:else>{{mydata.steps}}</text>
+		<view class="likebox">
+			<text class="likes_num">{{mydata.likes}}</text>
+			<image class="likepic" src="{{mydata.likepic}}"></image>
+		</view>
+	</view>
+</view>
+<!-- 我的数据结束 -->
+<!-- 今日和本月数据切换 -->
+<view class="changetab">
+	<view class="thisday active" bindtap="showToday">今日排行</view>
+	<view class="thismonth" bindtap="showMonth">本月排行</view>
+</view>
+<!-- 今日和本月数据切换结束 -->
+<!-- 朋友数据开始 -->
+<block wx:for="{{friendsdata}}">
+<view class="friendsdata">
+	<view class="infobox">
+		<text class="order_num" wx:if="{{index <100}}">{{index}}</text>
+		<text class="order_num font_small" wx:else>{{index}}</text>
+		<image class="avatar" src="{{item.avatar}}"></image>
+		<text class="nickname">{{item.nickName}}</text>
+	</view>
+	<view class="databox">
+		<text class="steps stepsgreen" wx:if="{{item.steps < 10000}}">{{item.steps}}</text>
+		<text class="steps stepsyellow" wx:else>{{item.steps}}</text>
+		<view class="likebox">
+			<text class="likes_num">{{item.likes}}</text>
+			<image class="likepic" wx:if="{{item.likes == 0 }}" src="{{mydata.unlikepic}}"></image>
+			<image class="likepic" wx:else src="{{mydata.likepic}}"></image>
+		</view>
+	</view>
+</view>
+</block>
+</block>
+<!-- 朋友数据结束 -->
+
+
+
+<!-- 本月数据 -->
+
+<!-- 封面图片 -->
+<block wx:if="{{off}}">
+<view class="cover data_month">
+ <image class="coverpic" src="/src/cover_pic.jpg"></image>
+ <view class="coveravatar">
+ 	<image  src="/src/coveravatar.png"></image>
+ 	<text>{{userInfo.nickName}}占领了本月封面</text>
+ </view>	 	
+</view>
+<!-- 封面图片结束 -->
+<!-- 我的数据开始 -->
+<view class="mydata data_list">
+	<view class="myinfobox">
+		<image class="avatar" src="{{mydata.avatar}}"></image>
+		<view class="myinfo">
+			<text class="nickname">{{mymonthdata.nickName}}</text>
+			<text class="mygrade">第{{mymonthdata.grade}}名</text>
+		</view>
+	</view>
+	<view class="databox">
+		<text  class="steps stepsyellow" wx:if="{{mydata.steps >= 10000}}">{{mymonthdata.steps}}</text>
+		<text  class="steps stepsgreen" wx:else>{{mymonthdata.steps}}</text>
+		<view class="likebox">
+			<text class="likes_num">{{mymonthdata.likes}}</text>
+			<image class="likepic" src="{{mydata.likepic}}"></image>
+		</view>
+	</view>
+</view>
+<!-- 我的数据结束 -->
+<!-- 今日和本月数据切换 -->
+<view class="changetab">
+	<view class="thisday" bindtap="showToday">今日排行</view>
+	<view class="thismonth active" bindtap="showMonth">本月排行</view>
+</view>
+<!-- 今日和本月数据切换结束 -->
+<!-- 朋友数据开始 -->
+<block wx:for="{{friendsmonthdata}}">
+<view class="friendsdata">
+	<view class="infobox">
+		<text class="order_num" wx:if="{{index <100}}">{{index}}</text>
+		<text class="order_num font_small" wx:else>{{index}}</text>
+		<image class="avatar" src="{{item.avatar}}"></image>
+		<text class="nickname">{{item.nickName}}</text>
+	</view>
+	<view class="databox">
+		<text class="steps stepsgreen" wx:if="{{item.steps < 10000}}">{{item.steps}}</text>
+		<text class="steps stepsyellow" wx:else>{{item.steps}}</text>
+		<view class="likebox">
+			<text class="likes_num">{{item.likes}}</text>
+			<image class="likepic" wx:if="{{item.likes == 0 }}" src="{{mydata.unlikepic}}"></image>
+			<image class="likepic" wx:else src="{{mydata.likepic}}"></image>
+		</view>
+	</view>
+</view>
+</block>
+</block>
+</view>

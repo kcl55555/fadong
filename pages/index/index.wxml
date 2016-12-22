@@ -1,0 +1,23 @@
+<!--index.wxml-->
+<view class="container">
+<view class="select_cpy">
+  <block wx:for="{{orgInfo}}">
+      <view bindtap="linktomyorg" class="userinfo">
+        <image class="userinfo-avatar" src="{{item.org_avatar}}" background-size="cover"></image>
+        <text class="userinfo-nickname">{{item.org_name}}</text>
+      </view>
+</block>
+</view>
+<view class="select_cpy">
+  <view>
+    <image class="hr_line" src="/src/hr.jpg"></image>
+  </view>
+  <text class="part_text">请选择组织</text>
+  <view>
+    <image class="hr_line" src="/src/hr.jpg" ></image>
+  </view>
+</view>
+  <view class="usermotto">
+    <image class="user-motto" src="/src/logo.jpg"></image>
+  </view>
+</view>

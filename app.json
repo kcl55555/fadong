@@ -1,0 +1,15 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/myorg/myorg",
+    "pages/orgpk/orgpk"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#2e2d33",
+    "navigationBarTitleText": "发动",
+    "navigationBarTextStyle":"white"
+  }
+
+}
