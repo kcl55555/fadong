@@ -5,27 +5,10 @@ Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
-    hum_num: 3,
-    half_hum: true
-  },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
-  showToday:function(){
-    this.setData({
-      show:1,
-      off:0
-    })
-
-  },
-  showMonth:function(){
-    this.setData({
-      show:0,
-      off:1
-    })
+    hum_num: 6,
+    half_hum: 1,
+    monthdata:[10000,10000,60000,40000,10000,30000,1000,1005,10000,20000,6563,10000,10000,10000,9000,10000,10700,10000,10000,10000,10000,10,4000,45000,10000,50000,2000,10000,10000,10000,10000,10000,],
+    monthmax:60000
   },
   onLoad: function () {
     console.log('onLoad')
@@ -36,6 +19,9 @@ Page({
       that.setData({
         userInfo:userInfo
       })
-    })
+    });
+    var day= new Date();
+    console.log(day.getMonth()+1);
+    console.log(day.getDate());
   }
 })

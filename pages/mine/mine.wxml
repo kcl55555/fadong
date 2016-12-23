@@ -12,19 +12,43 @@
 	<text>本月12345步</text>
 </view>
 
-<view class="ham_num" wx:if="{{hum_num<=4 }}">
+<view class="ham_num " wx:if="{{hum_num+half_hum<4 }}">
 	<block wx:for="{{hum_num}}" >
 		<image src="/src/hambugger.png"></image>
 	</block>
 	<image class="half_hum" src="/src/hambugger.png" wx:if="{{half_hum}}"></image>
 </view>
-<view class="ham_num_big" wx:else>
+<view class="ham_num_big " wx:else>
 	<block wx:for="{{hum_num}}" >
 		<image src="/src/hambugger.png"></image>
 	</block>
 	<image class="half_hum" src="/src/hambugger.png" wx:if="{{half_hum}}"></image>
 </view>
- <text>今日消耗了</text>
- <text>{{hum_num}}<text wx:if="{{half_hum}}">.5</text>个巨无霸</text>
-
+ <text class="hum_text">今日消耗了</text>
+ <text class="hum_text">{{hum_num}}<text wx:if="{{half_hum}}">.5</text>个巨无霸</text>
+<!-- 图表开始 -->
+<view class="chart_box">
+	<view class="line_box">
+<block wx:for='{{monthdata}}' wx:for-item="item">
+	<view class="block_item" style="height:{{item/monthmax*100}}%"></view>
+</block>
+	</view>
+	<view class="date_box">
+		<view class="big_circle"><text>11/12</text></view>
+			<block wx:for='{{monthdata}}' wx:for-item="item">
+			<view class="outer_box">
+			  <view class="date_item"></view>
+			</view>
+			</block>
+		<view class="big_circle">
+			<text>11/12</text>
+		</view>	
+		
+	</view>
+<view class="standard_line" style="bottom:{{(10000/monthmax)*300+48}}rpx">
+			<span>1万</span>
+			<view class="dash_line"></view>
+</view>
+</view>
+<!-- 图表结束 -->
 </view>

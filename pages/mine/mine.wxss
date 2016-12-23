@@ -1,3 +1,4 @@
+
 .container{
   padding:0;
   position:relative;
@@ -33,11 +34,12 @@ page{
   width:100%;
   display:flex;
   flex-direction:row;
-  padding:30rpx;
+  box-sizing:border-box;
+  padding:30rpx 0 ;
   background:#ffffff;
   position:relative;
   top:-10rpx;
-  border-bottom:10rpx solid #ebebeb;
+  border-bottom:4rpx solid #ebebeb;
 
 }
 .maindata text{
@@ -55,20 +57,107 @@ border-right:1px solid #ccc;
   flex-direction:row;
   justify-content:center;
   flex-wrap:wrap;
+  padding-bottom:20rpx;
+  padding-top:40rpx;
 }
 .ham_num image{
-  width:90rpx;
-  height:90rpx;
+  width:80rpx;
+  height:80rpx;
   margin:10rpx;
 }
 .ham_num_big{
+  padding-top:40rpx;
+  padding-bottom:20rpx;
   width:440rpx;
 }
 .ham_num_big image{
-  width:90rpx;
-  height:90rpx;
+  width:80rpx;
+  height:80rpx;
   margin:10rpx;
 }
 .half_hum{
   opacity:0.4;
+}
+.hum_text{
+  font-size:30rpx;
+  color:#999999;
+}
+.chart_box{
+  margin-top:50rpx;
+  padding-top:50rpx;
+  border-top:4rpx solid #ebebeb;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding-bottom:40rpx;
+  position:relative;
+  width:100%;
+}
+.line_box{
+  width:100%;
+  display:flex;
+  flex-direction:row;
+  align-items:flex-end;
+  justify-content:center;
+  height:300rpx;
+  position:relative;
+  z-index:999;
+}
+
+.date_box{
+  width:100%;
+  display:flex;
+  flex-direction:row;
+  align-items:flex-end;
+  justify-content:center;
+  height:18rpx;
+  position:relative;
+}
+.block_item{
+  width:16rpx;
+  background:#179d16;
+  margin:0 2rpx;
+  border-radius:16rpx 16rpx  0 0 ;
+}
+.outer_box{
+  width:16rpx;
+  margin:0 2rpx;
+  justify-content:center;
+  display:flex;
+}
+.date_item{
+  width:9rpx;
+  height:9rpx;
+  border-radius:9rpx;
+  background:#5f5d5b;
+}
+
+.big_circle{
+  width:14rpx;
+  height:14rpx;
+  border-radius:14rpx;
+  background:#000000;
+  margin:0 8rpx;
+}
+.big_circle text{
+  font-size:18rpx;
+  position:relative;
+  left:-14rpx;
+}
+.standard_line{
+ display:flex;
+ flex-direction:row;
+ position:absolute;
+ width:96%;
+ left:2%;
+ z-index:0;
+}
+.standard_line span{
+ font-size:14rpx;
+ color:#d2d2d2;
+}
+.dash_line{
+  border-bottom:1rpx dashed #d2d2d2;
+  width:94%;
+  height:8rpx;
 }
