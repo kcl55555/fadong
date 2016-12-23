@@ -7,13 +7,13 @@ Page({
     userInfo: {},
     show:1,
     off:0,
+    unlikepic:'/src/unlike.png',
+    likepic:'/src/liked.png',
     mydata:{
       avatar:'/src/coveravatar.png',
       nickName:'爱是不可名zhide cuowu',
       steps:6667843,
       likes:456,
-      unlikepic:'/src/unlike.png',
-      likepic:'/src/liked.png',
       grade:3
 
     },
@@ -22,60 +22,53 @@ Page({
       nickName:'爱是不可名zhide cuowu',
       steps:66678243,
       likes:4545,
-      unlikepic:'/src/unlike.png',
-      likepic:'/src/liked.png',
       grade:3
 
     },
-    friendsdata:{
-        1:{
+    friendsdata:[
+        {
         avatar:'/src/avatar_1.png',
         nickName:'wu',
         steps:11143,
         likes:456,
         grade:3,
          },
-        2:{
+        {
         avatar:'/src/avatar_2.png',
         nickName:'wudong',
         steps:843,
         likes:44,
         grade:56,
          }
-    },
-     friendsmonthdata:{
-        1:{
+    ],
+     friendsmonthdata:[
+        {
         avatar:'/src/avatar_1.png',
         nickName:'wu',
         steps:117143,
         likes:456,
         grade:3,
          },
-        2:{
+        {
         avatar:'/src/avatar_2.png',
         nickName:'wudong',
         steps:843,
         likes:44,
         grade:56,
          },
-         3:{
+         {
         avatar:'/src/avatar_1.png',
         nickName:'爱是不可名zhide cuowu',
         steps:66843,
         likes:456,
         grade:12,
          }
-    }
+     ]
   },
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({
       url: '../logs/logs'
-    })
-  },
-  tomine: function() {
-    wx.navigateTo({
-      url: '../mine/mine'
     })
   },
   showToday:function(){
@@ -103,26 +96,29 @@ Page({
         userInfo:userInfo
       })
     });
-     //  wx.request({
- //  url: 'test.php', //仅为示例，并非真实的接口地址
- //  data: {
- //     user_phone:'13823612077',
-        // org_code: 'aipao'
- //  },
- //  header: {
- //      'content-type': 'application/json'
- //  },
- //  success: function(res) {
- //      that.setData({
- //        mydata:res.mydata,
- //        mymonthdata:res.mymonthata,
- //        friendsdata:res.friendsdata,
- //        friendsmonthdata:res.friendsmonthdata
- //      })   
- //  },
- //  error:function(res){
- //     console.log(res.data)
- //  }
- // })
+      wx.request({
+  url: 'http://127.0.0.1:5757/getMyOrgData', 
+  data: {
+     user_phone:13516721842,
+        org_code: 'aipao'
+  },
+  method: 'POST',
+  type: 'cors',//'jsonp'
+  header: {
+      'content-type': 'application/json'
+  },
+  success: function(res) {
+      that.setData({
+        mydata:res.data.mydata,
+        mymonthdata:res.data.mymonthdata,
+        friendsdata:res.data.friendsdata,
+        friendsmonthdata:res.data.friendsmonthdata
+      }) ;
+      console.log(res)
+  },
+  error:function(res){
+     console.log(res.data)
+  }
+ })
   }
 })

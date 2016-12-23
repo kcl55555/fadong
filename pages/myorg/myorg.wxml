@@ -11,9 +11,9 @@
 </view>
 <!-- 封面图片结束 -->
 <!-- 我的数据开始 -->
-<view class="mydata data_list" bindtap="tomine">
+<view class="mydata data_list">
 	<view class="myinfobox">
-		<image class="avatar" src="{{mydata.avatar}}"></image>
+		<image class="avatar" src="http://wx.qlogo.cn/mmhead/{{mydata.avatar}}/0"></image>
 		<view class="myinfo">
 			<text class="nickname">{{mydata.nickName}}</text>
 			<text class="mygrade">第{{mydata.grade}}名</text>
@@ -24,7 +24,7 @@
 		<text  class="steps stepsgreen" wx:else>{{mydata.steps}}</text>
 		<view class="likebox">
 			<text class="likes_num">{{mydata.likes}}</text>
-			<image class="likepic" src="{{mydata.likepic}}"></image>
+			<image class="likepic" src="{{likepic}}"></image>
 		</view>
 	</view>
 </view>
@@ -39,9 +39,9 @@
 <block wx:for="{{friendsdata}}">
 <view class="friendsdata">
 	<view class="infobox">
-		<text class="order_num" wx:if="{{index <100}}">{{index}}</text>
+		<text class="order_num" wx:if="{{index <100}}">{{index+1}}</text>
 		<text class="order_num font_small" wx:else>{{index}}</text>
-		<image class="avatar" src="{{item.avatar}}"></image>
+		<image class="avatar" src="http://wx.qlogo.cn/mmhead/{{item.avatar}}/0"></image>
 		<text class="nickname">{{item.nickName}}</text>
 	</view>
 	<view class="databox">
@@ -49,8 +49,8 @@
 		<text class="steps stepsyellow" wx:else>{{item.steps}}</text>
 		<view class="likebox">
 			<text class="likes_num">{{item.likes}}</text>
-			<image class="likepic" wx:if="{{item.likes == 0 }}" src="{{mydata.unlikepic}}"></image>
-			<image class="likepic" wx:else src="{{mydata.likepic}}"></image>
+			<image class="likepic" wx:if="{{item.likes == 0 }}" src="{{unlikepic}}"></image>
+			<image class="likepic" wx:else src="{{likepic}}"></image>
 		</view>
 	</view>
 </view>
@@ -86,7 +86,7 @@
 		<text  class="steps stepsgreen" wx:else>{{mymonthdata.steps}}</text>
 		<view class="likebox">
 			<text class="likes_num">{{mymonthdata.likes}}</text>
-			<image class="likepic" src="{{mydata.likepic}}"></image>
+			<image class="likepic" src="{{likepic}}"></image>
 		</view>
 	</view>
 </view>
@@ -111,8 +111,8 @@
 		<text class="steps stepsyellow" wx:else>{{item.steps}}</text>
 		<view class="likebox">
 			<text class="likes_num">{{item.likes}}</text>
-			<image class="likepic" wx:if="{{item.likes == 0 }}" src="{{mydata.unlikepic}}"></image>
-			<image class="likepic" wx:else src="{{mydata.likepic}}"></image>
+			<image class="likepic" wx:if="{{item.likes == 0 }}" src="{{unlikepic}}"></image>
+			<image class="likepic" wx:else src="{{likepic}}"></image>
 		</view>
 	</view>
 </view>

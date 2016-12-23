@@ -28,13 +28,6 @@ Page({
     })
     
   },
-  onShareAppMessage: function () {
-    return {
-      title: '陪你跑 发动',
-      desc: '让我们一起跑起来吧!',
-      path: '/page/index'
-    }
-  },
   onLoad: function () {
     console.log('onLoad')
     var that = this
@@ -46,23 +39,32 @@ Page({
       })
     });
     
- //  wx.request({
- //  url: 'test.php', //仅为示例，并非真实的接口地址
- //  data: {
- //     user_phone:13823612077
- //  },
- //  header: {
- //      'content-type': 'application/json'
- //  },
- //  success: function(res) {
- //      that.setData({
- //        orgInfo:res.orgInfo
- //      })   
- //  },
- //  error:function(res){
- //     console.log(res.data)
- //  }
- // })
+   wx.request({
+   url: 'http://127.0.0.1:5757/getOrg', 
+   data: {
+      user_phone:13516721842
+   },
+   method: 'POST',
+   type: 'cors',//'jsonp',
+   header: {
+       'content-type': 'application/json'
+   },
+   success: function(res) {
+       that.setData({
+         orgInfo:{
+      1:{
+        org_name:'陪你跑',
+        org_avatar:'/src/avatar.jpg'
+      }
+
+    }
+       })   
+      // console.log('tiaoyongcengong')
+   },
+   error:function(res){
+      console.log(res.data)
+   }
+  })
      
   }
 
