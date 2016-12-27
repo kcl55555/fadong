@@ -51,4 +51,9 @@
 </view>
 </view>
 <!-- 图表结束 -->
+<!-- 退出按钮开始 -->
+<view class="button_area">
+	<button type="warn" size="large" bindtap="showModal">退出该公司</button>
+</view>
+<!-- 退出按钮结束 -->
 </view>

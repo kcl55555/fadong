@@ -161,3 +161,11 @@ border-right:1px solid #ccc;
   width:94%;
   height:8rpx;
 }
+.button_area{
+  background:#ebebeb;
+  width:100%;
+  padding:100rpx 0 50rpx 0;
+} 
+.button_area button{
+  width:80%;
+}

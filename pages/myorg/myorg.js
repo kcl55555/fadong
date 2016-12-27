@@ -71,6 +71,11 @@ Page({
       url: '../logs/logs'
     })
   },
+  linktomine: function() {
+    wx.navigateTo({
+      url: '../mine/mine'
+    })
+  },
   showToday:function(){
     this.setData({
       show:1,
@@ -96,29 +101,29 @@ Page({
         userInfo:userInfo
       })
     });
-      wx.request({
-  url: 'http://127.0.0.1:5757/getMyOrgData', 
-  data: {
-     user_phone:13516721842,
-        org_code: 'aipao'
-  },
-  method: 'POST',
-  type: 'cors',//'jsonp'
-  header: {
-      'content-type': 'application/json'
-  },
-  success: function(res) {
-      that.setData({
-        mydata:res.data.mydata,
-        mymonthdata:res.data.mymonthdata,
-        friendsdata:res.data.friendsdata,
-        friendsmonthdata:res.data.friendsmonthdata
-      }) ;
-      console.log(res)
-  },
-  error:function(res){
-     console.log(res.data)
-  }
- })
+//       wx.request({
+//   url: 'http://127.0.0.1:5757/getMyOrgData', 
+//   data: {
+//      user_phone:13516721842,
+//         org_code: 'aipao'
+//   },
+//   method: 'POST',
+//   type: 'cors',//'jsonp'
+//   header: {
+//       'content-type': 'application/json'
+//   },
+//   success: function(res) {
+//       that.setData({
+//         mydata:res.data.mydata,
+//         mymonthdata:res.data.mymonthdata,
+//         friendsdata:res.data.friendsdata,
+//         friendsmonthdata:res.data.friendsmonthdata
+//       }) ;
+//       console.log(res)
+//   },
+//   error:function(res){
+//      console.log(res.data)
+//   }
+//  })
   }
 })

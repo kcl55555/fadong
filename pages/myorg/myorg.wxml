@@ -12,7 +12,7 @@
 <!-- 封面图片结束 -->
 <!-- 我的数据开始 -->
 <view class="mydata data_list">
-	<view class="myinfobox">
+	<view class="myinfobox" bindtap="linktomine">
 		<image class="avatar" src="http://wx.qlogo.cn/mmhead/{{mydata.avatar}}/0"></image>
 		<view class="myinfo">
 			<text class="nickname">{{mydata.nickName}}</text>

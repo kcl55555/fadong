@@ -10,6 +10,21 @@ Page({
     monthdata:[10000,10000,60000,40000,10000,30000,1000,1005,10000,20000,6563,10000,10000,10000,9000,10000,10700,10000,10000,10000,10000,10,4000,45000,10000,50000,2000,10000,10000,10000,10000,10000,],
     monthmax:60000
   },
+  showModal:function(){
+      wx.showModal({
+        title: '确定退出？',
+        content: '如若退出该公司，您的数据将不显示在该公司列表中',
+        success: function(res) {
+          if (res.confirm) {
+            console.log('用户点击确定');
+             wx.redirectTo({
+            url: '../index/index'
+             });
+          };
+         
+        }
+      })
+  },
   onLoad: function () {
     console.log('onLoad')
     var that = this

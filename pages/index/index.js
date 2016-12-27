@@ -39,32 +39,32 @@ Page({
       })
     });
     
-   wx.request({
-   url: 'http://127.0.0.1:5757/getOrg', 
-   data: {
-      user_phone:13516721842
-   },
-   method: 'POST',
-   type: 'cors',//'jsonp',
-   header: {
-       'content-type': 'application/json'
-   },
-   success: function(res) {
-       that.setData({
-         orgInfo:{
-      1:{
-        org_name:'陪你跑',
-        org_avatar:'/src/avatar.jpg'
-      }
+  //  wx.request({
+  //  url: 'http://127.0.0.1:5757/getOrg', 
+  //  data: {
+  //     user_phone:13516721842
+  //  },
+  //  method: 'POST',
+  //  type: 'cors',//'jsonp',
+  //  header: {
+  //      'content-type': 'application/json'
+  //  },
+  //  success: function(res) {
+  //      that.setData({
+  //        orgInfo:{
+  //     1:{
+  //       org_name:'陪你跑',
+  //       org_avatar:'/src/avatar.jpg'
+  //     }
 
-    }
-       })   
-      // console.log('tiaoyongcengong')
-   },
-   error:function(res){
-      console.log(res.data)
-   }
-  })
+  //   }
+  //      })   
+  //     // console.log('tiaoyongcengong')
+  //  },
+  //  error:function(res){
+  //     console.log(res.data)
+  //  }
+  // })
      
   }
 
