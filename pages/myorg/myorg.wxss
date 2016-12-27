@@ -1,6 +1,7 @@
 .container{
   padding:0;
   position:relative;
+  padding-bottom:140rpx;
 }
 page{
   background:#e1e0de;
@@ -151,4 +152,13 @@ page{
 }
 .likes_num{
   font-size:30rpx;
+}
+.orgpkbtn{
+  position:fixed;
+  bottom:0;
+  background:#ebebeb;
+  width:100%;
+  text-align:center;
+  color:#010101;
+  border-radius:0;
 }

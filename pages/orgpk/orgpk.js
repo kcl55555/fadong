@@ -192,6 +192,9 @@ Page({
       url: '../logs/logs'
     })
   },
+  linktomyorg:function(){
+    wx.navigateBack();
+  },
   showToday:function(){
     this.setData({
       show:1,

@@ -3,12 +3,19 @@
 var app = getApp()
 Page({
   data: {
-    motto: 'Hello World',
     userInfo: {},
     hum_num: 6,
     half_hum: 1,
     monthdata:[10000,10000,60000,40000,10000,30000,1000,1005,10000,20000,6563,10000,10000,10000,9000,10000,10700,10000,10000,10000,10000,10,4000,45000,10000,50000,2000,10000,10000,10000,10000,10000,],
-    monthmax:60000
+    monthmax:60000,
+    hide:true
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '来看我的运动数据',
+      desc: '发动-陪你跑',
+      path: '/page/mine/mine'
+    }
   },
   showModal:function(){
       wx.showModal({
@@ -25,6 +32,7 @@ Page({
         }
       })
   },
+  
   onLoad: function () {
     console.log('onLoad')
     var that = this
@@ -35,8 +43,20 @@ Page({
         userInfo:userInfo
       })
     });
-    var day= new Date();
-    console.log(day.getMonth()+1);
-    console.log(day.getDate());
+  wx.getStorage({
+  key: 'namecode',
+  success: function(res) {
+      console.log('打印出来的东西是：'+res.data)
+  } 
+});
+  wx.getStorage({
+  key: 'hidebtn',
+  success: function(res) {
+      that.setData({
+        hide: res.data
+      });
+      console.log(that.data.hide);
+  } 
+})
   }
 })

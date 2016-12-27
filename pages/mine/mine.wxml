@@ -30,7 +30,9 @@
 <view class="chart_box">
 	<view class="line_box">
 <block wx:for='{{monthdata}}' wx:for-item="item">
-	<view class="block_item" style="height:{{item/monthmax*100}}%"></view>
+	<view class="block_item" style="height:{{item/monthmax*100}}%">
+		<view class="block_item_inner"></view>
+	</view>
 </block>
 	</view>
 	<view class="date_box">
@@ -45,15 +47,16 @@
 		</view>	
 		
 	</view>
-<view class="standard_line" style="bottom:{{(10000/monthmax)*300+48}}rpx">
+<view class="standard_line" style="bottom:{{(10000/monthmax)*300+88}}rpx">
 			<span>1万</span>
 			<view class="dash_line"></view>
 </view>
+<text class="dpt_text">最近30天-步数</text>
 </view>
 <!-- 图表结束 -->
 <!-- 退出按钮开始 -->
-<view class="button_area">
-	<button type="warn" size="large" bindtap="showModal">退出该公司</button>
+<view class="button_area" >
+	<button type="warn" size="large" bindtap="showModal" wx:if="{{!hide}}">退出该公司</button>
 </view>
 <!-- 退出按钮结束 -->
 </view>

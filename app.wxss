@@ -9,3 +9,8 @@
   box-sizing: border-box;
   font-family:微软雅黑
 } 
+.footline{
+  font-size:24rpx;
+  margin-top:50rpx;
+  color:#a8a7a6;
+}

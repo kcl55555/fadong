@@ -118,4 +118,7 @@
 </view>
 </block>
 </block>
+<text class="footline">---我也是有底线的---</text>
 </view>
+<button class="orgpkbtn" bindtap="linktomyorg">我的组织</button>
+

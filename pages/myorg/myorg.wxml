@@ -12,7 +12,7 @@
 <!-- 封面图片结束 -->
 <!-- 我的数据开始 -->
 <view class="mydata data_list">
-	<view class="myinfobox" bindtap="linktomine">
+	<view class="myinfobox" bindtap="linktomine" data-namecode="13823612077" data-hidebtn="false">
 		<image class="avatar" src="http://wx.qlogo.cn/mmhead/{{mydata.avatar}}/0"></image>
 		<view class="myinfo">
 			<text class="nickname">{{mydata.nickName}}</text>
@@ -38,7 +38,7 @@
 <!-- 朋友数据开始 -->
 <block wx:for="{{friendsdata}}">
 <view class="friendsdata">
-	<view class="infobox">
+	<view class="infobox" bindtap="linktomine" data-hidebtn="true" data-namecode="{{item.namecode}}">
 		<text class="order_num" wx:if="{{index <100}}">{{index+1}}</text>
 		<text class="order_num font_small" wx:else>{{index}}</text>
 		<image class="avatar" src="http://wx.qlogo.cn/mmhead/{{item.avatar}}/0"></image>
@@ -100,7 +100,7 @@
 <!-- 朋友数据开始 -->
 <block wx:for="{{friendsmonthdata}}">
 <view class="friendsdata">
-	<view class="infobox">
+	<view class="infobox" bindtap="linktomine" data-hidebtn="true" data-namecode="{{item.namecode}}">
 		<text class="order_num" wx:if="{{index <100}}">{{index}}</text>
 		<text class="order_num font_small" wx:else>{{index}}</text>
 		<image class="avatar" src="{{item.avatar}}"></image>
@@ -118,4 +118,6 @@
 </view>
 </block>
 </block>
+<text class="footline">---我也是有底线的---</text>
 </view>
+<button class="orgpkbtn" bindtap="linktoorg">组织pk</button>

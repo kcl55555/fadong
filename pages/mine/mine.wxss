@@ -89,7 +89,7 @@ border-right:1px solid #ccc;
   display:flex;
   flex-direction:column;
   justify-content:center;
-  padding-bottom:40rpx;
+  padding-bottom:80rpx;
   position:relative;
   width:100%;
 }
@@ -115,9 +115,22 @@ border-right:1px solid #ccc;
 }
 .block_item{
   width:16rpx;
-  background:#179d16;
   margin:0 2rpx;
+  position:relative;
+}
+.block_item_inner{
+  width:100%;
   border-radius:16rpx 16rpx  0 0 ;
+  background:#179d16;
+  position:absolute;
+  bottom:0;
+  animation: allheight 2s linear 1s;
+  animation-fill-mode:forwards;
+}
+@keyframes allheight
+{
+    from {height: 0;}
+    to {height: 100%;}
 }
 .outer_box{
   width:16rpx;
@@ -168,4 +181,13 @@ border-right:1px solid #ccc;
 } 
 .button_area button{
   width:80%;
+}
+.dpt_text{
+  position:absolute;
+  bottom:30rpx;
+  justify-content:center;
+  display:flex;
+  width:100%;
+  font-size:26rpx;
+  color:#555555;
 }

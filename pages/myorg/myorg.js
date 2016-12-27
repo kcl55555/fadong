@@ -32,6 +32,7 @@ Page({
         steps:11143,
         likes:456,
         grade:3,
+        namecode:13811111111
          },
         {
         avatar:'/src/avatar_2.png',
@@ -39,6 +40,31 @@ Page({
         steps:843,
         likes:44,
         grade:56,
+        namecode:13844444444
+         },
+        {
+        avatar:'/src/avatar_2.png',
+        nickName:'wudong',
+        steps:843,
+        likes:44,
+        grade:56,
+        namecode:13844444444
+         },
+        {
+        avatar:'/src/avatar_2.png',
+        nickName:'wudong',
+        steps:843,
+        likes:44,
+        grade:56,
+        namecode:13844444444
+         },
+        {
+        avatar:'/src/avatar_2.png',
+        nickName:'wudong',
+        steps:843,
+        likes:44,
+        grade:56,
+        namecode:13844444444
          }
     ],
      friendsmonthdata:[
@@ -48,6 +74,7 @@ Page({
         steps:117143,
         likes:456,
         grade:3,
+        namecode:13945543232
          },
         {
         avatar:'/src/avatar_2.png',
@@ -55,6 +82,7 @@ Page({
         steps:843,
         likes:44,
         grade:56,
+        namecode:13573322463
          },
          {
         avatar:'/src/avatar_1.png',
@@ -62,8 +90,17 @@ Page({
         steps:66843,
         likes:456,
         grade:12,
+        namecode:13842323552
          }
      ]
+  },
+  //设置分享
+  onShareAppMessage: function () {
+    return {
+      title: '来看我的运动数据',
+      desc: '发动-陪你跑',
+      path: '/page/myorg/myorg'
+    }
   },
   //事件处理函数
   bindViewTap: function() {
@@ -71,9 +108,24 @@ Page({
       url: '../logs/logs'
     })
   },
-  linktomine: function() {
+  linktomine: function(e) {
+    var namecode=e.currentTarget.dataset.namecode;
+    var hidebtn=e.currentTarget.dataset.hidebtn;
+    wx.setStorage({
+      key:"namecode",
+      data:namecode
+    }),
+    wx.setStorage({
+      key:"hidebtn",
+      data:hidebtn
+    }),
     wx.navigateTo({
       url: '../mine/mine'
+    })
+  },
+  linktoorg:function(){
+    wx.navigateTo({
+      url: '../orgpk/orgpk'
     })
   },
   showToday:function(){
@@ -113,11 +165,16 @@ Page({
 //       'content-type': 'application/json'
 //   },
 //   success: function(res) {
+          // var friendsdata=res.data.friendsdata.sort(function(a,b){
+          //   return a.steps-b.steps});
+          // var friendsmonthdata=res.data.friendsmonthdata.sort(function(a,b){
+          //   return a.steps-b.steps});
+
 //       that.setData({
 //         mydata:res.data.mydata,
 //         mymonthdata:res.data.mymonthdata,
-//         friendsdata:res.data.friendsdata,
-//         friendsmonthdata:res.data.friendsmonthdata
+//         friendsdata:friendsdata,
+//         friendsmonthdata:friendsmonthdata
 //       }) ;
 //       console.log(res)
 //   },
