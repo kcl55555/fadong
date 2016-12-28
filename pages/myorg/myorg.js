@@ -108,6 +108,11 @@ Page({
       url: '../logs/logs'
     })
   },
+  linktolike:function(){
+    wx.navigateTo({
+      url: '../like/like'
+    })
+  },
   linktomine: function(e) {
     var namecode=e.currentTarget.dataset.namecode;
     var hidebtn=e.currentTarget.dataset.hidebtn;

@@ -1,10 +1,12 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/login/login",
     "pages/logs/logs",
     "pages/myorg/myorg",
     "pages/orgpk/orgpk",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/like/like"
   ],
   "window":{
     "backgroundTextStyle":"light",

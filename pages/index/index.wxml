@@ -1,23 +1,18 @@
 <!--index.wxml-->
 <view class="container">
-<view class="select_cpy">
-  <block wx:for="{{orgInfo}}">
-      <view bindtap="linktomyorg" class="userinfo">
-        <image class="userinfo-avatar" src="{{item.org_avatar}}" background-size="cover"></image>
-        <text class="userinfo-nickname">{{item.org_name}}</text>
-      </view>
-</block>
-</view>
-<view class="select_cpy">
-  <view>
-    <image class="hr_line" src="/src/hr.jpg"></image>
+	<text class="title">短信验证登入</text>
+   <view class="mobile_input">
+	   	<text>手机号</text>
+	   	<text class="text-right">+86</text>
+	   	<input type="number" maxlength="11" placeholder="11位手机号码" bindinput="phoneInput"></input>
+	   	<button bindtap="sendmsg"  disabled="{{disabled}}">{{btn_second+btn_text}}</button>
+   </view>
+   <view class="test_input">
+	   	<text>验证码</text>
+	   	<input type="number" maxlength="6" bindinput="inputTest"></input>
+   </view>
+  <view class="errortip_box">
+   <text class="errortip" wx:if="{{error}}"><text style="color:red">*</text>验证码填写错误或者已经过期，请重新填写或重新获取</text>
   </view>
-  <text class="part_text">请选择组织</text>
-  <view>
-    <image class="hr_line" src="/src/hr.jpg" ></image>
-  </view>
-</view>
-  <view class="usermotto">
-    <image class="user-motto" src="/src/logo.jpg"></image>
-  </view>
+   <button type="primary" class="submit_btn" bindtap="submitTest">提交</button>
 </view>

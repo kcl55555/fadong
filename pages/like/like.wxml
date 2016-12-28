@@ -1,0 +1,25 @@
+<!--index.wxml-->
+<view class="container">
+	<block >
+		<view class="therow">
+			<view class="infobox">
+				<image src="{{}}"></image>
+				<text>ales</text>
+			</view>
+			<view class="timebox">
+				<text>一个小时前</text>
+			</view>
+			
+		</view>
+		<view class="therow">
+			<view class="infobox">
+				<image src="{{}}"></image>
+				<text>alex</text>
+			</view>
+			<view class="timebox">
+				<text>一个小时前</text>
+			</view>
+			
+		</view>
+	</block>
+</view>

@@ -22,7 +22,7 @@
 	<view class="databox">
 		<text  class="steps stepsyellow" wx:if="{{mydata.steps >= 10000}}">{{mydata.steps}}</text>
 		<text  class="steps stepsgreen" wx:else>{{mydata.steps}}</text>
-		<view class="likebox">
+		<view class="likebox" bindtap="linktolike">
 			<text class="likes_num">{{mydata.likes}}</text>
 			<image class="likepic" src="{{likepic}}"></image>
 		</view>

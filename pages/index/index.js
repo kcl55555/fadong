@@ -1,32 +1,115 @@
 //index.js
 //获取应用实例
+var mdkey = require('../../utils/md5.js')  
 var app = getApp()
 Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
-    orgInfo:{
-      1:{
-        org_name:'爱跑体育',
-        org_avatar:'/src/avatar.jpg'
-      }
+    btn_text:'获取验证码',
+    btn_second:'',
+    disabled: true,
+    only_phone: 'hate', //防止用户获取完验证码后再次更换手机号的字段
+    phone: '',
+    countbegin: false, //是否在倒数计时中，防止二次输入的bug.
+    testNum: '111111',
+    inputNUm: '',
+    error: false
+  },
+  sendmsg:function(){//点击发送验证码按钮动作
+      var that=this;
+      var sign=mdkey.hexMD5('8e1a384a6f10111'+that.data.phone);
+        wx.request({
+          url: 'http://sms4st.cmfree.cn/sms.php', //服务端的接口
+          type: 'cors',//代表跨域
+          method: 'GET',
+          data: {
+             
+             user_phone: that.data.phone
+          },
+          header: {
+              'content-type': 'application/json'
+          },
+          success: function(res) {
+             that.sendSuccess();
+             that.setData({
+                 testNum: res.data, //填写正确的返回的验证码的字段
+                 only_phone: that.data.phone   
+             });
+          }
+    });
 
-    }
-  },
-  //事件处理函数
-  bindViewTap2: function() {
-    wx.navigateTo({
-      url: '../myorg/myorg'
-    })
-  },
-  bindViewTap: function() {
-   app.onLaunch();
-  },
-  linktomyorg:function(){
-    wx.navigateTo({
-      url: '../myorg/myorg'
-    })
-    
+ },
+ inputTest:function(e){
+   var that=this;
+   that.setData({
+       inputNUm: e.detail.value
+   });
+ },
+ submitTest: function(){
+  var that=this;
+     if(that.data.inputNUm==that.data.testNum && that.data.only_phone==that.data.phone){
+         wx.navigateTo({
+          url: '../login/login'
+         });
+      that.setData({
+         testNum: 'love'
+      })
+     }
+     else{
+        that.setData({
+          error: true
+        })
+     }
+ },
+  phoneInput:function(e){//监听输入手机号码动作
+    var that=this
+     if((/^1[34578]\d{9}$/.test(e.detail.value)) && !that.data.countbegin){
+          that.setData({
+            disabled: false,
+            phone: e.detail.value
+        });
+          
+     }
+  }, 
+  sendSuccess:function(){// 验证码发送成功回调函数
+    var that=this
+
+        that.setData({
+          btn_text:'s后重发',
+          btn_second:'60',//此处可定义多少秒后重新发送短信
+          disabled: true,
+          countbegin: true
+        });
+
+    var second=that.data.btn_second;
+    var timer=setInterval(function(){//倒数计时器
+        second--;
+      if(second>=0)
+          {
+            that.setData({
+              btn_second:second
+            });
+          }
+      else
+        {
+          clearInterval(timer);
+          that.setData({
+            btn_text:'获取验证码',
+            btn_second:'',
+            disabled: false
+          });
+        }
+
+
+    },1000);
+
+      wx.showToast({
+        title: '验证码发送成功，请注意查收',
+        icon: 'success',
+        duration: 2000
+      });
+
   },
   onLoad: function () {
     console.log('onLoad')
@@ -38,34 +121,5 @@ Page({
         userInfo:userInfo
       })
     });
-    
-  //  wx.request({
-  //  url: 'http://127.0.0.1:5757/getOrg', 
-  //  data: {
-  //     user_phone:13516721842
-  //  },
-  //  method: 'POST',
-  //  type: 'cors',//'jsonp',
-  //  header: {
-  //      'content-type': 'application/json'
-  //  },
-  //  success: function(res) {
-  //      that.setData({
-  //        orgInfo:{
-  //     1:{
-  //       org_name:'陪你跑',
-  //       org_avatar:'/src/avatar.jpg'
-  //     }
-
-  //   }
-  //      })   
-  //     // console.log('tiaoyongcengong')
-  //  },
-  //  error:function(res){
-  //     console.log(res.data)
-  //  }
-  // })
-     
   }
-
 })
