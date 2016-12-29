@@ -6,14 +6,14 @@
  <image class="coverpic" src="/src/cover_pic.jpg"></image>
  <view class="coveravatar">
  	<image  src="/src/coveravatar.png"></image>
- 	<text>阿里云占领了封面</text>
+ 	<text>{{userInfo.nickName}}占领了封面</text>
  </view>	 	
 </view>
 <!-- 封面图片结束 -->
 <!-- 我的数据开始 -->
 <view class="mydata data_list">
-	<view class="myinfobox">
-		<image class="avatar" src="{{mydata.avatar}}"></image>
+	<view class="myinfobox" bindtap="linktomine" data-namecode="13823612077" data-hidebtn="{{btn_false}}">
+		<image class="avatar" src="http://wx.qlogo.cn/mmhead/{{mydata.avatar}}/0"></image>
 		<view class="myinfo">
 			<text class="nickname">{{mydata.nickName}}</text>
 			<text class="mygrade">第{{mydata.grade}}名</text>
@@ -22,9 +22,10 @@
 	<view class="databox">
 		<text  class="steps stepsyellow" wx:if="{{mydata.steps >= 10000}}">{{mydata.steps}}</text>
 		<text  class="steps stepsgreen" wx:else>{{mydata.steps}}</text>
-		<view class="likebox">
+		<view class="likebox" bindtap="linktolike">
 			<text class="likes_num">{{mydata.likes}}</text>
-			<image class="likepic" src="{{mydata.likepic}}"></image>
+			<image class="likepic" src="{{likepic}}" wx:if="{{mydata.likes}}"></image>
+			<image class="likepic" src="{{unlikepic}}" wx:else ></image>
 		</view>
 	</view>
 </view>
@@ -38,20 +39,24 @@
 <!-- 朋友数据开始 -->
 <block wx:for="{{friendsdata}}">
 <view class="friendsdata">
-	<view class="infobox">
-		<text class="order_num" wx:if="{{index <100}}">{{index}}</text>
+	<view class="infobox" bindtap="linktomine" data-hidebtn="{{btn_true}}" data-namecode="{{item.namecode}}">
+		<text class="order_num" wx:if="{{index <100}}">{{index+1}}</text>
 		<text class="order_num font_small" wx:else>{{index}}</text>
-		<image class="avatar" src="{{item.avatar}}"></image>
+		<image class="avatar" src="http://wx.qlogo.cn/mmhead/{{item.avatar}}/0"></image>
 		<text class="nickname">{{item.nickName}}</text>
 	</view>
 	<view class="databox">
 		<text class="steps stepsgreen" wx:if="{{item.steps < 10000}}">{{item.steps}}</text>
 		<text class="steps stepsyellow" wx:else>{{item.steps}}</text>
+<view class="middlebox">
 		<view class="likebox">
 			<text class="likes_num">{{item.likes}}</text>
-			<image class="likepic" wx:if="{{item.likes == 0 }}" src="{{mydata.unlikepic}}"></image>
-			<image class="likepic" wx:else src="{{mydata.likepic}}"></image>
+
+			<image class="likepic" wx:if="{{!item.mylike}}" src="{{unlikepic}}" bindtap="likeit" data-namecode="{{item.namecode}}"></image>
+
+			<image class="likepic" wx:else src="{{likepic}}"></image>
 		</view>
+</view>
 	</view>
 </view>
 </block>
@@ -74,19 +79,20 @@
 <!-- 封面图片结束 -->
 <!-- 我的数据开始 -->
 <view class="mydata data_list">
-	<view class="myinfobox">
-		<image class="avatar" src="{{mydata.avatar}}"></image>
+	<view class="myinfobox" bindtap="linktomine" data-namecode="13823612077" data-hidebtn="{{btn_false}}">
+		<image class="avatar" src="http://wx.qlogo.cn/mmhead/{{mymonthdata.avatar}}/0"></image>
 		<view class="myinfo">
 			<text class="nickname">{{mymonthdata.nickName}}</text>
 			<text class="mygrade">第{{mymonthdata.grade}}名</text>
 		</view>
 	</view>
 	<view class="databox">
-		<text  class="steps stepsyellow" wx:if="{{mydata.steps >= 10000}}">{{mymonthdata.steps}}</text>
+		<text  class="steps stepsyellow" wx:if="{{mymonthdata.steps >= 10000}}">{{mymonthdata.steps}}</text>
 		<text  class="steps stepsgreen" wx:else>{{mymonthdata.steps}}</text>
-		<view class="likebox">
+		<view class="likebox" bindtap="linktolike">
 			<text class="likes_num">{{mymonthdata.likes}}</text>
-			<image class="likepic" src="{{mydata.likepic}}"></image>
+			<image class="likepic" src="{{likepic}}" wx:if="{{mymonthdata.likes}}"></image>
+			<image class="likepic" src="{{unlikepic}}" wx:else ></image>
 		</view>
 	</view>
 </view>
@@ -100,25 +106,28 @@
 <!-- 朋友数据开始 -->
 <block wx:for="{{friendsmonthdata}}">
 <view class="friendsdata">
-	<view class="infobox">
-		<text class="order_num" wx:if="{{index <100}}">{{index}}</text>
+	<view class="infobox" bindtap="linktomine" data-hidebtn="{{btn_true}}" data-namecode="{{item.namecode}}">
+		<text class="order_num" wx:if="{{index <100}}">{{index+1}}</text>
 		<text class="order_num font_small" wx:else>{{index}}</text>
-		<image class="avatar" src="{{item.avatar}}"></image>
+		<image class="avatar" src="http://wx.qlogo.cn/mmhead/{{item.avatar}}/0"></image>
 		<text class="nickname">{{item.nickName}}</text>
 	</view>
 	<view class="databox">
 		<text class="steps stepsgreen" wx:if="{{item.steps < 10000}}">{{item.steps}}</text>
 		<text class="steps stepsyellow" wx:else>{{item.steps}}</text>
+<view class="middlebox">
 		<view class="likebox">
 			<text class="likes_num">{{item.likes}}</text>
-			<image class="likepic" wx:if="{{item.likes == 0 }}" src="{{mydata.unlikepic}}"></image>
-			<image class="likepic" wx:else src="{{mydata.likepic}}"></image>
+
+			<image class="likepic" wx:if="{{!item.mylike}}" src="{{unlikepic}}" bindtap="likeit" data-namecode="{{item.namecode}}"></image>
+
+			<image class="likepic" wx:else src="{{likepic}}"></image>
 		</view>
+</view>
 	</view>
 </view>
 </block>
 </block>
 <text class="footline">---我也是有底线的---</text>
 </view>
-<button class="orgpkbtn" bindtap="linktomyorg">我的组织</button>
-
+<button class="orgpkbtn" bindtap="linktoorg">我的组织</button>

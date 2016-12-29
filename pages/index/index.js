@@ -1,6 +1,5 @@
 //index.js
-//获取应用实例
-var mdkey = require('../../utils/md5.js')  
+//获取应用实例 
 var app = getApp()
 Page({
   data: {
@@ -12,13 +11,15 @@ Page({
     only_phone: 'hate', //防止用户获取完验证码后再次更换手机号的字段
     phone: '',
     countbegin: false, //是否在倒数计时中，防止二次输入的bug.
-    testNum: '111111',
+    testNum: 'love',
     inputNUm: '',
     error: false
   },
   sendmsg:function(){//点击发送验证码按钮动作
       var that=this;
-      var sign=mdkey.hexMD5('8e1a384a6f10111'+that.data.phone);
+       that.setData({
+                 error: false
+             });
         wx.request({
           url: 'http://sms4st.cmfree.cn/sms.php', //服务端的接口
           type: 'cors',//代表跨域
@@ -43,10 +44,14 @@ Page({
  inputTest:function(e){
    var that=this;
    that.setData({
-       inputNUm: e.detail.value
+       inputNUm: e.detail.value,
+       error: false
    });
  },
  submitTest: function(){
+  wx.redirectTo({
+      url: '../login/login'
+    });
   var that=this;
      if(that.data.inputNUm==that.data.testNum && that.data.only_phone==that.data.phone){
          wx.navigateTo({
@@ -67,7 +72,8 @@ Page({
      if((/^1[34578]\d{9}$/.test(e.detail.value)) && !that.data.countbegin){
           that.setData({
             disabled: false,
-            phone: e.detail.value
+            phone: e.detail.value,
+            error: false
         });
           
      }
@@ -113,6 +119,7 @@ Page({
   },
   onLoad: function () {
     console.log('onLoad')
+    
     var that = this
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function(userInfo){
@@ -122,4 +129,5 @@ Page({
       })
     });
   }
+
 })

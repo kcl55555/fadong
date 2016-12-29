@@ -9,19 +9,21 @@ Page({
     off:0,
     unlikepic:'/src/unlike.png',
     likepic:'/src/liked.png',
+    btn_true: true,
+    btn_false: false,
     mydata:{
       avatar:'/src/coveravatar.png',
       nickName:'爱是不可名zhide cuowu',
       steps:6667843,
-      likes:456,
+      likes:1,
       grade:3
 
     },
     mymonthdata:{
       avatar:'/src/coveravatar.png',
       nickName:'爱是不可名zhide cuowu',
-      steps:66678243,
-      likes:4545,
+      steps:6667823,
+      likes:454,
       grade:3
 
     },
@@ -31,68 +33,93 @@ Page({
         nickName:'wu',
         steps:11143,
         likes:456,
-        grade:3,
-        namecode:13811111111
+        mylike: false,
+        namecode: 138111115345
          },
         {
         avatar:'/src/avatar_2.png',
         nickName:'wudong',
         steps:843,
-        likes:44,
+        likes:64,
         grade:56,
-        namecode:13844444444
+        mylike: true,
+        namecode: 13857646344
          },
         {
         avatar:'/src/avatar_2.png',
         nickName:'wudong',
         steps:843,
-        likes:44,
+        likes:999,
         grade:56,
-        namecode:13844444444
+        mylike: false,
+        namecode:13844444111
          },
         {
         avatar:'/src/avatar_2.png',
         nickName:'wudong',
         steps:843,
-        likes:44,
+        likes:4,
         grade:56,
-        namecode:13844444444
+        mylike: false,
+        namecode:13844442222
          },
         {
         avatar:'/src/avatar_2.png',
         nickName:'wudong',
         steps:843,
-        likes:44,
+        likes:34,
         grade:56,
-        namecode:13844444444
+        mylike: true,
+        namecode:138444443333
          }
     ],
      friendsmonthdata:[
+        
         {
+        avatar:'/src/avatar_2.png',
+        nickName:'wudong',
+        steps:843,
+        likes:64,
+        grade:56,
+        mylike: true,
+        namecode: 13857646344
+         },
+         {
         avatar:'/src/avatar_1.png',
         nickName:'wu',
-        steps:117143,
+        steps:11143,
         likes:456,
-        grade:3,
-        namecode:13945543232
+        mylike: false,
+        namecode: 138111115345
          },
         {
         avatar:'/src/avatar_2.png',
         nickName:'wudong',
         steps:843,
-        likes:44,
+        likes:999,
         grade:56,
-        namecode:13573322463
+        mylike: false,
+        namecode:13844444111
          },
-         {
-        avatar:'/src/avatar_1.png',
-        nickName:'爱是不可名zhide cuowu',
-        steps:66843,
-        likes:456,
-        grade:12,
-        namecode:13842323552
+        {
+        avatar:'/src/avatar_2.png',
+        nickName:'wudong',
+        steps:843,
+        likes:4,
+        grade:56,
+        mylike: false,
+        namecode:13844442222
+         },
+        {
+        avatar:'/src/avatar_2.png',
+        nickName:'wudong',
+        steps:843,
+        likes:34,
+        grade:56,
+        mylike: true,
+        namecode:138444443333
          }
-     ]
+    ]
   },
   //设置分享
   onShareAppMessage: function () {
@@ -108,6 +135,38 @@ Page({
       url: '../logs/logs'
     })
   },
+  likeit:function(e){
+    var that=this
+    var name_code=e.currentTarget.dataset.namecode;
+    var dayindex=that.findIndex(that.data.friendsdata, name_code);
+    var monthindex=that.findIndex(that.data.friendsmonthdata, name_code);
+      
+  console.log(dayindex);
+  console.log(monthindex);
+
+       that.data.friendsdata[dayindex].likes+=1;
+       that.data.friendsdata[dayindex].mylike=true;
+       that.setData({
+        friendsdata:that.data.friendsdata
+       });
+       that.data.friendsmonthdata[monthindex].likes+=1;
+       that.data.friendsmonthdata[monthindex].mylike=true;
+       that.setData({
+        friendsmonthdata:that.data.friendsmonthdata
+       })
+  },
+  findIndex:function(arr, value){
+        
+         for(var i=0;i<arr.length;i++){
+
+          if(arr[i].namecode==value){
+            var res=i
+            
+            return res
+            }
+          }
+         },
+         
   linktolike:function(){
     wx.navigateTo({
       url: '../like/like'
@@ -129,7 +188,7 @@ Page({
     })
   },
   linktoorg:function(){
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../orgpk/orgpk'
     })
   },

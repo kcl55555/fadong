@@ -8,7 +8,7 @@ Page({
     half_hum: 1,
     monthdata:[10000,10000,60000,40000,10000,30000,1000,1005,10000,20000,6563,10000,10000,10000,9000,10000,10700,10000,10000,10000,10000,10,4000,45000,10000,50000,2000,10000,10000,10000,10000,10000,],
     monthmax:60000,
-    hide:true
+    btnhide:true
   },
   onShareAppMessage: function () {
     return {
@@ -32,10 +32,26 @@ Page({
         }
       })
   },
+  testfunction:function(){
+    var that=this
+    that.setData({
+              btnhide: false
+            });
+  },
   
   onLoad: function () {
+     var that = this
+      wx.getStorage({
+        key: 'hidebtn',
+        success: function(res) {
+            if(res.data){
+              that.testfunction();
+              console.log('我被执行了')
+            }
+        } 
+});
     console.log('onLoad')
-    var that = this
+  
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function(userInfo){
       //更新数据
@@ -49,14 +65,7 @@ Page({
       console.log('打印出来的东西是：'+res.data)
   } 
 });
-  wx.getStorage({
-  key: 'hidebtn',
-  success: function(res) {
-      that.setData({
-        hide: res.data
-      });
-      console.log(that.data.hide);
-  } 
-})
+
+
   }
 })

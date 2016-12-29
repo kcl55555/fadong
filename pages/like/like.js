@@ -5,6 +5,19 @@ Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
+    list:[
+    {
+      avatar: '/src/avatar_1.png',
+      nickName: 'alex',
+      time: '1小时前'
+    },
+    {
+      avatar: '/src/avatar_2.png',
+      nickName: 'annie',
+      time: '4小时前'
+    }
+
+    ]
   },
   onLoad: function () {
     console.log('onLoad')

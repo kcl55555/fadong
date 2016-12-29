@@ -8,7 +8,7 @@
  </view>	 	
 </view>
 <view class="maindata">
-	<text class="border_right">今日2534步</text>
+	<text class="border_right" bindtap="testfunction">今日2534步</text>
 	<text>本月12345步</text>
 </view>
 
@@ -55,8 +55,8 @@
 </view>
 <!-- 图表结束 -->
 <!-- 退出按钮开始 -->
-<view class="button_area" >
-	<button type="warn" size="large" bindtap="showModal" wx:if="{{!hide}}">退出该公司</button>
+<view class="button_area" wx:if="{{btnhide}}">
+	<button type="warn" size="large" bindtap="showModal"  >退出该公司{{btnhide}}</button>
 </view>
 <!-- 退出按钮结束 -->
 </view>

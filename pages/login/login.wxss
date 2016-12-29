@@ -29,9 +29,14 @@
   color: #000000;
   font-size:32rpx;
 }
-
+.usermotto{
+  position:absolute;
+  bottom:100rpx;
+  left:50%;
+  transform:translateX(-112rpx);
+}
 .user-motto {
   width:224rpx;
   height:151rpx;
-  margin-top: 200px;
+
 }

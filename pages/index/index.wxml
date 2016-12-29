@@ -5,7 +5,7 @@
 	   	<text>手机号</text>
 	   	<text class="text-right">+86</text>
 	   	<input type="number" maxlength="11" placeholder="11位手机号码" bindinput="phoneInput"></input>
-	   	<button bindtap="sendmsg"  disabled="{{disabled}}">{{btn_second+btn_text}}</button>
+	   	<button bindtap="sendmsg" disabled="{{disabled}}">{{btn_second+btn_text}}</button>
    </view>
    <view class="test_input">
 	   	<text>验证码</text>

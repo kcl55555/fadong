@@ -1,7 +1,7 @@
 .container{
   padding:0;
   position:relative;
-  padding-bottom:140rpx
+  padding-bottom:140rpx;
 }
 page{
   background:#e1e0de;
@@ -105,10 +105,16 @@ page{
   width:100rpx;
   height:100rpx;
   margin-right:20rpx;
+  border-radius:100rpx;
 }
 .likepic{
   width:50rpx;
   height:50rpx;
+}
+.middlebox{
+  display:flex;
+  justify-content:center;
+  width:50rpx;
 }
 .databox .likebox{
   display:flex;
@@ -152,7 +158,6 @@ page{
 .likes_num{
   font-size:30rpx;
 }
-
 .orgpkbtn{
   position:fixed;
   bottom:0;

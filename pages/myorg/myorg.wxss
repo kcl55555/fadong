@@ -111,6 +111,11 @@ page{
   width:50rpx;
   height:50rpx;
 }
+.middlebox{
+  display:flex;
+  justify-content:center;
+  width:50rpx;
+}
 .databox .likebox{
   display:flex;
   flex-direction:column;

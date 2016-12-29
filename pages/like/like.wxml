@@ -1,25 +1,14 @@
 <!--index.wxml-->
 <view class="container">
-	<block >
+	<block wx:for="{{list}}">
 		<view class="therow">
 			<view class="infobox">
-				<image src="{{}}"></image>
-				<text>ales</text>
+				<image src="{{item.avatar}}"></image>
+				<text>{{item.nickName}}</text>
 			</view>
 			<view class="timebox">
-				<text>一个小时前</text>
-			</view>
-			
-		</view>
-		<view class="therow">
-			<view class="infobox">
-				<image src="{{}}"></image>
-				<text>alex</text>
-			</view>
-			<view class="timebox">
-				<text>一个小时前</text>
-			</view>
-			
+				<text>{{item.time}}</text>
+			</view>			
 		</view>
 	</block>
 </view>
