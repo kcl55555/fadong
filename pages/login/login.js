@@ -5,7 +5,8 @@ Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
-    orgInfo:[]
+    orgInfo:[],
+    fadong_session:''
   },
   //事件处理函数
   bindViewTap2: function() {
@@ -16,12 +17,22 @@ Page({
   bindViewTap: function() {
    app.onLaunch();
   },
-  linktomyorg:function(){
-    wx.navigateTo({
-      url: '../myorg/myorg'
-    })
+  linktomyorg:function(e){
+    var that=this
+    var org_id=e.currentTarget.dataset.org_id;
+    wx.setStorage({
+      key: 'org_id',
+      data: org_id
+    });
+
+    that.toPage('myorg')
     
   },
+   toPage:function(page){
+    wx.redirectTo({
+      url: '../'+page+'/'+page
+    })
+ },
   onLoad: function () {
     console.log('onLoad')
     var that = this
@@ -40,40 +51,21 @@ Page({
           })
 
          if(res.data.length==1){
-          console.log('我的长度真的是'+res.data.length)
-
-            wx.redirectTo({
-              url: '../myorg/myorg'
-            })
+          // console.log('我的长度真的是'+res.data.length)
+            that.toPage('myorg')
+            
          }
       }
-    })
-  //  wx.request({
-  //  url: 'http://127.0.0.1:5757/getOrg', 
-  //  data: {
-  //     user_phone:13516721842
-  //  },
-  //  method: 'POST',
-  //  type: 'cors',//'jsonp',
-  //  header: {
-  //      'content-type': 'application/json'
-  //  },
-  //  success: function(res) {
-  //      that.setData({
-  //        orgInfo:{
-  //     1:{
-  //       org_name:'陪你跑',
-  //       org_avatar:'/src/avatar.jpg'
-  //     }
+    });
+     wx.setStorage({
+                key: 'fadong_session',
+                success:function(res){
+                    that.setData({
+                      fadong_session: res.data
+                    })
+                }
+              })//获取fadong_session
 
-  //   }
-  //      })   
-  //     // console.log('tiaoyongcengong')
-  //  },
-  //  error:function(res){
-  //     console.log(res.data)
-  //  }
-  // })
      
   }
 

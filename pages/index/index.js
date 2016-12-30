@@ -13,7 +13,8 @@ Page({
     countbegin: false, //是否在倒数计时中，防止二次输入的bug.
     testNum: 'love',
     inputNUm: '',
-    error: false
+    error: false,
+    fadong_session: ''
   },
   sendmsg:function(){//点击发送验证码按钮动作
       var that=this;
@@ -49,17 +50,37 @@ Page({
    });
  },
  submitTest: function(){
-  wx.redirectTo({
-      url: '../login/login'
-    });
+  // wx.redirectTo({
+  //     url: '../login/login'
+  //   });
+ wx.setStorage({
+                key: 'fadong_session',
+                success:function(res){
+                    that.setData({
+                      fadong_session: res.data
+                    })
+                }
+              })//获取fadong_session
   var that=this;
      if(that.data.inputNUm==that.data.testNum && that.data.only_phone==that.data.phone){
-         wx.navigateTo({
-          url: '../login/login'
-         });
-      that.setData({
-         testNum: 'love'
-      })
+        
+      wx.request({
+        url:'http://sms4st.cmfree.cn/sms.php',
+        data:{
+          user_phone: that.data.only_phone,
+          fadong_session: that.data.fadong_session
+        },
+        success:function(res){
+           
+           wx.navigateTo({
+            url: '../login/login'
+           });
+           that.setData({
+            testNum: 'love'
+          })
+
+        }
+      })    
      }
      else{
         that.setData({
@@ -130,17 +151,7 @@ Page({
       })
     });
 
-    wx.getStorage({
-      key: 'bindphone',
-      success: function(res){
-        if(res.data){
-              wx.redirectTo({
-                url: '../login/login'
-              })
-             }
-        }
 
-    })
   }
 
 })

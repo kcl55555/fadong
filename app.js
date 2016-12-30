@@ -1,13 +1,7 @@
 //app.js
 App({
   onLaunch: function () {
-
-  
-      //mock一下数据
- var that=this
-  
-                   that.toPage('index');
-
+    var that=this
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -25,7 +19,7 @@ App({
             header: {
              'content-type': 'application/json'
             },
-            success: function(res) {// res的data里面应包含这几个字段：bindphone: true/false, 3rd_session: xxx, orgInfo:[{name:陪你跑, avatar: '...xx.jpg'}]
+            success: function(res) {// res的data里面应包含这几个字段：bindphone: true/false, 3rd_session: xxx, orgInfo:[{name:陪你跑, avatar: '...xx.jpg',org_id: '1111'}]
                wx.setStorage({
                 key: 'fadong_session',
                 data: res.data.fadong_session
@@ -46,6 +40,11 @@ App({
           if(res.data.bindphone){ //如果用户已经绑定过手机号码
                
                 if(res.data.orgInfo.length==1){
+                   wx.setStorage({
+                    key: 'org_id',
+                    data: res.data.orgInfo[0].org_id
+                   });
+
                    that.toPage('myorg')
                 }
                 else{

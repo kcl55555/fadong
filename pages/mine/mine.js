@@ -4,11 +4,20 @@ var app = getApp()
 Page({
   data: {
     userInfo: {},
-    hum_num: 6,
-    half_hum: 1,
-    monthdata:[10000,10000,60000,40000,10000,30000,1000,1005,10000,20000,6563,10000,10000,10000,9000,10000,10700,10000,10000,10000,10000,10,4000,45000,10000,50000,2000,10000,10000,10000,10000,10000,],
-    monthmax:60000,
-    btnhide:true
+    hum_num: 6,  //几个巨无霸
+    half_hum: 1,  //有没有0.5个巨无霸 ，如果巨无霸是整数，返回0
+    monthdata:[
+    // 10000,10000,60000,40000,10000,
+    // 30000,1000,1005,10000,20000,
+    // 6563,10000,10000,10000,9000,
+    // 10000,10700,10000,10000,10000,
+    // 10000,10,4000,45000,10000,
+    // 50000,2000,10000,10000,10000,10000,10000
+    ],
+    monthmax: '', //本月最高步数，作为基准线使用
+    btnhide:true,
+    fadong_session:'',
+    friend_session:''
   },
   onShareAppMessage: function () {
     return {
@@ -23,16 +32,26 @@ Page({
         content: '如若退出该公司，您的数据将不显示在该公司列表中',
         success: function(res) {
           if (res.confirm) {
-            console.log('用户点击确定');
-             wx.redirectTo({
-            url: '../index/index'
-             });
+            // console.log('用户点击确定');
+            wx.request({
+              url:' quit.php',  //退出该公司的接口
+              data:{
+                quit: true
+              },
+              method:'POST',
+              success:function(){
+                wx.redirectTo({
+                url: '../login/login'
+               });
+              }
+            })
+             
           };
          
         }
       })
   },
-  testfunction:function(){
+  hidebtn:function(){
     var that=this
     that.setData({
               btnhide: false
@@ -42,15 +61,39 @@ Page({
   onLoad: function () {
      var that = this
       wx.getStorage({
-        key: 'hidebtn',
+        key: 'fadong_session',
         success: function(res) {
-            if(res.data){
-              that.testfunction();
-              console.log('我被执行了')
-            }
+            that.setData({
+              fadong_session: res.data
+            })
         } 
-});
-    console.log('onLoad')
+      });
+      wx.getStorage({
+        key: 'friend_session',
+        success: function(res) {
+            that.setData({
+              friend_session: res.data
+            });
+            if(!res.data==that.data.fadong_session){
+                  that.hidebtn();  
+            };
+            wx.request({
+              url:'mine.php',
+              data:{
+                friend_session: res.data
+              },
+              method: 'POST',
+              success:function(res){
+                that.setData({            
+                    hum_num: res.data.hum_num,  //几个巨无霸
+                    half_hum: res.data.half_hum,  //有没有0.5个巨无霸 ，如果巨无霸是整数，返回0
+                    monthdata: res.data.monthdata,
+                    monthmax:res.data.monthmax //本月最高步数，作为基准线使用
+                })
+              }
+            })
+        } 
+      });
   
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function(userInfo){
@@ -59,12 +102,7 @@ Page({
         userInfo:userInfo
       })
     });
-  wx.getStorage({
-  key: 'namecode',
-  success: function(res) {
-      console.log('打印出来的东西是：'+res.data)
-  } 
-});
+  
 
 
   }
