@@ -5,13 +5,7 @@ Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
-    orgInfo:{
-      1:{
-        org_name:'爱跑体育',
-        org_avatar:'/src/avatar.jpg'
-      }
-
-    }
+    orgInfo:[]
   },
   //事件处理函数
   bindViewTap2: function() {
@@ -38,7 +32,22 @@ Page({
         userInfo:userInfo
       })
     });
-    
+    wx.getStorage({
+      key: 'orgInfo',
+      success:function(res){
+          that.setData({
+            orgInfo: res.data
+          })
+
+         if(res.data.length==1){
+          console.log('我的长度真的是'+res.data.length)
+
+            wx.redirectTo({
+              url: '../myorg/myorg'
+            })
+         }
+      }
+    })
   //  wx.request({
   //  url: 'http://127.0.0.1:5757/getOrg', 
   //  data: {

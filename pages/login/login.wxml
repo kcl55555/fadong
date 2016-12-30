@@ -3,10 +3,11 @@
 <view class="select_cpy">
   <block wx:for="{{orgInfo}}">
       <view bindtap="linktomyorg" class="userinfo">
-        <image class="userinfo-avatar" src="{{item.org_avatar}}" background-size="cover"></image>
-        <text class="userinfo-nickname">{{item.org_name}}</text>
+        <image class="userinfo-avatar" src="{{item.avatar}}" background-size="cover"></image>
+        <text class="userinfo-nickname">{{item.name}}</text>
       </view>
 </block>
+<text wx:if="{{orgInfo.length==0}}">未加入任何组织</text>
 </view>
 <view class="select_cpy">
   <view>
