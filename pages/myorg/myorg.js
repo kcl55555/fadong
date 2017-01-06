@@ -125,11 +125,16 @@ Page({
     })
   },
   linktomine: function(e) {
-    var friend_session=e.currentTarget.dataset.fadong_session;
+    var friend_session=e.currentTarget.dataset.fsession;
     var hidebtn=e.currentTarget.dataset.hidebtn;
+    var avatar=e.currentTarget.dataset.avatar;
     wx.setStorage({
       key:"friend_session",
       data:friend_session
+    }),
+    wx.setStorage({
+      key:"avatar",
+      data:avatar
     }),
     wx.setStorage({
       key:"hidebtn",
@@ -162,9 +167,10 @@ Page({
   setMygrade:function(){
     var that=this;
     for(var i=0;i<=that.data.friendsdata.length;i++){
-                if(that.data.friendsdata[i].friend_session==that.data.mydata.my_session){
-                  console.log('woshii'+i);
-                  console.log(that.data.friendsdata[i].friend_session)
+      var index=i;
+                if(that.data.friendsdata[index].friend_session==that.data.mydata.my_session){
+                  console.log('woshii'+index);
+                  // console.log(that.data.friendsdata[index].friend_session)
                   that.setData({
                       mygrade: i
                   })
@@ -174,10 +180,11 @@ Page({
   setMymonthgrade:function(){
     var that=this;
     for(var j=0;j<=that.data.friendsmonthdata.length;j++){
-                if(that.data.friendsmonthdata[j].friend_session==that.data.mymonthdata.my_session){
-                  console.log('woyeshii'+j);
+               var index=j;
+                if(that.data.friendsmonthdata[index].friend_session==that.data.mymonthdata.my_session){
+                  console.log('woyeshii'+index);
                   that.setData({
-                      mymonthgrade: j
+                      mymonthgrade: index
                   });
                 }
 
@@ -188,6 +195,11 @@ Page({
    
 
     var that = this
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      duration: 10000
+    })
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function(userInfo){
       //更新数据
@@ -195,6 +207,7 @@ Page({
         userInfo:userInfo
       })
     });
+
     wx.getStorage({
        key:'fadong_session',
        success:function(res){
@@ -203,20 +216,18 @@ Page({
            })
        }
     });
+
     wx.getStorage({
        key:'org_id',
        success:function(res){
            that.setData({
             org_id: res.data
-           })
-       }
-    });
-
-      wx.request({//获取步数和好友列表的接口
-        url: 'https://44165841.peinipao.wang/getMyOrgData', 
+           });
+             wx.request({//获取步数和好友列表的接口
+        url: app.globalData.mysite+'getMyOrgData', 
         data: {
-           fadong_session: 'fkxq1jrtxeyj0jmmm5qllvbxpn666fd7c4an7aw7209ljx7tna20lfo1oga2f6h0w6rhdy1nnsh3erdf661efbmiakc0wl0cyrw5akdblexr9e1r35jtf3wy8qifjbo5tque037dld2va15ulvqaff1u8y7qj5drq8jbi2v4',//that.data.fadong_session,
-              org_id: 1, //that.data.org_id
+           fadong_session: that.data.fadong_session,
+              org_id: that.data.org_id
         },
         method: 'POST',
 //   type: 'cors',//'jsonp'
@@ -237,17 +248,18 @@ Page({
               friendsmonthdata:friendsmonthdata
             }) ;
             //  console.log(friendsmonthdata[8].friend_session==that.data.mymonthdata.my_session)
-            // that.setMygrade();
-            // that.setMymonthgrade();
-            
-            
-            
-
+            that.setMygrade();
+            that.setMymonthgrade();
+            wx.hideToast();
             // console.log(res)
         },
         error:function(res){
            console.log(res.data)
         }
  })
+       }
+    });
+
+
   }
 })

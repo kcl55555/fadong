@@ -168,4 +168,6 @@ page{
   text-align:center;
   color:#010101;
   border-radius:0;
+  padding:15rpx;
+  box-sizing:border-box;
 }

@@ -4,7 +4,7 @@
 <view class="cover data_today">
  <image class="coverpic" src="/src/cover_pic.jpg"></image>
  <view class="coveravatar">
- 	<image  src="/src/coveravatar.png"></image>
+ 	<image  src="http://wx.qlogo.cn/mmhead/{{avatar}}/0"></image>
  </view>	 	
 </view>
 <view class="maindata">

@@ -4,8 +4,8 @@ var app = getApp()
 Page({
   data: {
     userInfo: {},
-    hum_num: 6,  //几个巨无霸
-    half_hum: 1,  //有没有0.5个巨无霸 ，如果巨无霸是整数，返回0
+    hum_num: 0,  //几个巨无霸
+    half_hum: 0,  //有没有0.5个巨无霸 ，如果巨无霸是整数，返回0
     monthdata:[
     // 10000,10000,60000,40000,10000,
     // 30000,1000,1005,10000,20000,
@@ -20,7 +20,8 @@ Page({
     friend_session:'',
     monthtotal:'',
     today:'',
-    lastmonth:''
+    lastmonth:'',
+    avatar:''
   },
   onShareAppMessage: function () {
     return {
@@ -36,18 +37,21 @@ Page({
         success: function(res) {
           if (res.confirm) {
             // console.log('用户点击确定');
-            wx.request({
-              url:' quit.php',  //退出该公司的接口
-              data:{
-                quit: true
-              },
-              method:'POST',
-              success:function(){
-                wx.redirectTo({
+            wx.redirectTo({
                 url: '../login/login'
                });
-              }
-            })
+            // wx.request({
+            //   url:' quit.php',  //退出该公司的接口
+            //   data:{
+            //     quit: true
+            //   },
+            //   method:'POST',
+            //   success:function(){
+            //     wx.redirectTo({
+            //     url: '../login/login'
+            //    });
+            //   }
+            // })
              
           };
          
@@ -55,14 +59,26 @@ Page({
       })
   },
   hidebtn:function(){
-    var that=this
+    var that=this;
     that.setData({
               btnhide: false
             });
   },
-  
+  zero:function(n){
+    if(n<10){
+      return '0'+n
+    }
+    else{
+      return n
+    }
+  },
   onLoad: function () {
-     var that = this
+     var that = this;
+     wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      duration: 10000
+    });
       wx.getStorage({
         key: 'fadong_session',
         success: function(res) {
@@ -72,28 +88,40 @@ Page({
         } 
       });
       wx.getStorage({
+        key: 'avatar',
+        success: function(res) {
+            that.setData({
+              avatar: res.data
+            })
+        } 
+      });
+      wx.getStorage({
         key: 'friend_session',
         success: function(res) {
             that.setData({
               friend_session: res.data
             });
-            if(!res.data==that.data.fadong_session){
-                  that.hidebtn();  
+            if(res.data!=that.data.fadong_session){
+                  that.hidebtn(); 
             };
             wx.request({
-              url:'https://44165841.peinipao.wang/getUserData',
+              url: app.globalData.mysite+'getUserData',
               data:{
                 friend_session: res.data
               },
               method: 'POST',
               success:function(res){
+
+               console.log(res);
                 that.setData({            
                     hum_num: res.data.hum_num,  //几个巨无霸
                     half_hum: res.data.half_hum,  //有没有0.5个巨无霸 ，如果巨无霸是整数，返回0
                     monthdata: res.data.monthdata,
                     monthmax:res.data.monthmax, //本月最高步数，作为基准线使用
                     monthtotal:res.data.monthtotal
-                })
+                });
+               wx.hideToast();
+                  
               }
             })
         } 
@@ -106,8 +134,8 @@ Page({
     var day_day=day.getDate();
     var last_day=last.getDate();
     that.setData({
-      today: day_day+'/'+day_month,
-      lastmonth: last_day+'/'+last_month
+      today: that.zero(day_day)+'/'+that.zero(day_month),
+      lastmonth: that.zero(last_day)+'/'+that.zero(last_month)
     })
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function(userInfo){
@@ -116,7 +144,7 @@ Page({
         userInfo:userInfo
       })
     });
-  
+
 
 
   }

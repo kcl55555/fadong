@@ -20,7 +20,7 @@ page{
 .cover .coveravatar{
   position:absolute;
   /*top:100rpx;*/
-  top:35%;
+  top:40%;
   text-align:center;
   color:#fff;
   line-height:80rpx;
@@ -29,6 +29,8 @@ page{
 .cover .coveravatar image{
   width:150rpx;
   height:150rpx;
+  border-radius:150rpx;
+  border:6rpx solid #e1e0de;
 }
 .maindata{
   width:100%;
@@ -126,6 +128,14 @@ border-right:1px solid #ccc;
   bottom:0;
   animation: allheight 2s linear 1s;
   animation-fill-mode:forwards;
+  -webkit-animation: allheight 2s linear 1s;
+  -webkit-animation-fill-mode:forwards;
+  -ms-animation: allheight 2s linear 1s;
+  -ms-animation-fill-mode:forwards;
+  -o-animation: allheight 2s linear 1s;
+  -o-animation-fill-mode:forwards;
+  -moz-animation: allheight 2s linear 1s;
+  -moz-animation-fill-mode:forwards;
 }
 @keyframes allheight
 {

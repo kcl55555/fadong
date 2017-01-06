@@ -23,7 +23,7 @@ Page({
                  error: false
              });
         wx.request({
-          url: 'https://44165841.peinipao.wang/smsVerify', //服务端的接口
+          url: app.globalData.mysite+'smsVerify', //服务端的接口
           type: 'cors',//代表跨域
           method: 'GET',
           data: {
@@ -68,7 +68,7 @@ Page({
      if(1){//that.data.inputNUm==that.data.testNum && that.data.only_phone==that.data.phone){
         
       wx.request({
-        url:'https://44165841.peinipao.wang/bindPhone',
+        url:app.globalData.mysite+'bindPhone',
         method: 'POST',
         data:{
           user_phone: that.data.only_phone,

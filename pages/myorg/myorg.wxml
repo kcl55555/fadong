@@ -5,14 +5,14 @@
 <view class="cover data_today">
  <image class="coverpic" src="/src/cover_pic.jpg"></image>
  <view class="coveravatar">
- 	<image  src="http://wx.qlogo.cn/mmhead/{{friendsdata[0].avatar}}/0"></image>
+ 	<image  src="http://wx.qlogo.cn/mmhead/{{friendsdata[0].avatar}}/0"  bindtap="linktomine" data-fsession="{{friendsdata[0].friend_session}}" data-hidebtn="{{btn_false}}" data-avatar="{{friendsdata[0].avatar}}"></image>
  	<text>{{friendsdata[0].nickName}}占领了封面</text>
  </view>	 	
 </view>
 <!-- 封面图片结束 -->
 <!-- 我的数据开始 -->
 <view class="mydata data_list">
-	<view class="myinfobox" bindtap="linktomine" data-fadong_session="{{mydata.my_session}}" data-hidebtn="{{btn_false}}">
+	<view class="myinfobox" bindtap="linktomine" data-fsession="{{mydata.my_session}}" data-hidebtn="{{btn_false}}" data-avatar="{{mydata.avatar}}">
 		<image class="avatar" src="http://wx.qlogo.cn/mmhead/{{mydata.avatar}}/0"></image>
 		<view class="myinfo">
 			<text class="nickname">{{mydata.nickName}}</text>
@@ -39,7 +39,7 @@
 <!-- 朋友数据开始 -->
 <block wx:for="{{friendsdata}}">
 <view class="friendsdata">
-	<view class="infobox" bindtap="linktomine" data-hidebtn="{{btn_true}}" data-fadong_seeion="{{item.friend_session}}">
+	<view class="infobox" bindtap="linktomine" data-hidebtn="{{btn_true}}" data-fsession="{{item.friend_session}}" data-avatar="{{item.avatar}}">
 		<text class="order_num" wx:if="{{index <100}}">{{index+1}}</text>
 		<text class="order_num font_small" wx:else>{{index}}</text>
 		<image class="avatar" src="http://wx.qlogo.cn/mmhead/{{item.avatar}}/0"></image>
@@ -72,14 +72,14 @@
 <view class="cover data_month">
  <image class="coverpic" src="/src/cover_pic.jpg"></image>
  <view class="coveravatar">
- 	<image  src="http://wx.qlogo.cn/mmhead/{{friendsmonthdata[0].avatar}}/0"></image>
+ 	<image  src="http://wx.qlogo.cn/mmhead/{{friendsmonthdata[0].avatar}}/0"  bindtap="linktomine" data-fsession="{{friendsmonthdata[0].friend_session}}" data-hidebtn="{{btn_false}}" data-avatar="{{friendsmonthdata[0].avatar}}"></image>
  	<text>{{friendsmonthdata[0].nickName}}占领了本月封面</text>
  </view>	 	
 </view>
 <!-- 封面图片结束 -->
 <!-- 我的数据开始 -->
 <view class="mydata data_list">
-	<view class="myinfobox" bindtap="linktomine" data-fadong_session="{{mymonthdata.my_session}}" data-hidebtn="{{btn_false}}">
+	<view class="myinfobox" bindtap="linktomine" data-fsession="{{mymonthdata.my_session}}" data-hidebtn="{{btn_false}}" data-avatar="{{mymonthdata.avatar}}">
 		<image class="avatar" src="http://wx.qlogo.cn/mmhead/{{mymonthdata.avatar}}/0"></image>
 		<view class="myinfo">
 			<text class="nickname">{{mymonthdata.nickName}}</text>
@@ -106,7 +106,7 @@
 <!-- 朋友数据开始 -->
 <block wx:for="{{friendsmonthdata}}">
 <view class="friendsdata">
-	<view class="infobox" bindtap="linktomine" data-hidebtn="{{btn_true}}" data-fadong_session="{{item.friend_session}}">
+	<view class="infobox" bindtap="linktomine" data-hidebtn="{{btn_true}}" data-fsession="{{item.friend_session}}" data-avatar="{{item.avatar}}">
 		<text class="order_num" wx:if="{{index <100}}">{{index+1}}</text>
 		<text class="order_num font_small" wx:else>{{index}}</text>
 		<image class="avatar" src="http://wx.qlogo.cn/mmhead/{{item.avatar}}/0"></image>
