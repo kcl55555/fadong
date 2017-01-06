@@ -8,8 +8,8 @@
  </view>	 	
 </view>
 <view class="maindata">
-	<text class="border_right" bindtap="testfunction">今日2534步</text>
-	<text>本月12345步</text>
+	<text class="border_right" bindtap="testfunction">今日{{monthdata[0]}}步</text>
+	<text>近30天{{monthtotal}}步</text>
 </view>
 
 <view class="ham_num " wx:if="{{hum_num+half_hum<4 }}">
@@ -36,14 +36,14 @@
 </block>
 	</view>
 	<view class="date_box">
-		<view class="big_circle"><text>11/12</text></view>
+		<view class="big_circle"><text>{{lastmonth}}</text></view>
 			<block wx:for='{{monthdata}}' wx:for-item="item">
 			<view class="outer_box">
 			  <view class="date_item"></view>
 			</view>
 			</block>
 		<view class="big_circle">
-			<text>11/12</text>
+			<text>{{today}}</text>
 		</view>	
 		
 	</view>
@@ -56,7 +56,7 @@
 <!-- 图表结束 -->
 <!-- 退出按钮开始 -->
 <view class="button_area" wx:if="{{btnhide}}">
-	<button type="warn" size="large" bindtap="showModal"  >退出该公司{{btnhide}}</button>
+	<button type="warn" size="large" bindtap="showModal"  >退出该公司</button>
 </view>
 <!-- 退出按钮结束 -->
 </view>

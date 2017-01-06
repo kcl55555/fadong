@@ -1,68 +1,34 @@
-.container{
-  padding:0;
-  position:relative;
-  padding-bottom:140rpx;
-  font-family:微软雅黑;
-}
-page{
-  background:#ffffff;
-}
-.title{
-  font-weight:bold;
-  margin-top:80rpx;
-  margin-bottom:80rpx;
-  font-size:44rpx;
 
-}
-.mobile_input .text-right{
-  text-align:right;
-  font-weight: normal
-}
-.test_input,
-.mobile_input{
-  width:100%;
+.usermotto{
+  position:absolute;
+  left:50%;
+  top:40%;
+  transform:translateX(-112rpx);
   display:flex;
-  flex-direction:row;
-  font-size:34rpx;
-  border-bottom:1px solid #d6d7dc;
-  padding:40rpx 25rpx;
-  align-items:center;
-  box-sizing:border-box;
+  filter:alpha(opacity:0);
+  opacity:0;
+  flex-direction:column;
+  animation: showout 2s linear 1s;
+  animation-fill-mode:forwards;
 }
-.test_input text,
-.mobile_input text{
-  text-align:left;
-  margin-left:40rpx;
-  font-weight: 700
+@keyframes showout{
+  from{
+    opacity:0;
+    filter:alpha(opacity:0);
+    top:40%;
+  }
+  to{
+    filter:alpha(opacity:1);
+    opacity:100;
+    top:30%;
+  }
 }
-.mobile_input input{
-  width:280rpx;
-  text-align:left;
-  padding-left:30rpx;
+.usermotto text{
+  text-align:center;
+  margin-top:50rpx;
 }
-.test_input input{
-  width:460rpx;
-  text-align:left;
-  padding-left:30rpx;
-}
-.mobile_input button{
-  width:auto;
-  font-size:18rpx;
-  padding:0rpx 8rpx;
-  background:#1AAD19;
-  color:#ffffff;
-}
-.submit_btn{
-  margin-top:60rpx;
-  width:90%;
-}
-.errortip_box{
-  height:100rpx;
-  width:90%;
-}
-.errortip{
-  font-size:30rpx;
-  margin-top:10rpx;
-  color:#ccc;
-  width:70%;
+.user-motto {
+  width:224rpx;
+  height:151rpx;
+
 }

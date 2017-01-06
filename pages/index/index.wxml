@@ -1,18 +1,8 @@
 <!--index.wxml-->
 <view class="container">
-	<text class="title">短信验证登入</text>
-   <view class="mobile_input">
-	   	<text>手机号</text>
-	   	<text class="text-right">+86</text>
-	   	<input type="number" maxlength="11" placeholder="11位手机号码" bindinput="phoneInput"></input>
-	   	<button bindtap="sendmsg" disabled="{{disabled}}">{{btn_second+btn_text}}</button>
-   </view>
-   <view class="test_input">
-	   	<text>验证码</text>
-	   	<input type="number" maxlength="6" bindinput="inputTest"></input>
-   </view>
-  <view class="errortip_box">
-   <text class="errortip" wx:if="{{error}}"><text style="color:red">*</text>验证码填写错误或者已经过期，请重新填写或重新获取</text>
+  <view class="usermotto">
+    <image class="user-motto" src="/src/logo.jpg"></image>
+    <br/>
+    <text>发动</text>
   </view>
-   <button type="primary" class="submit_btn" bindtap="submitTest">提交</button>
 </view>

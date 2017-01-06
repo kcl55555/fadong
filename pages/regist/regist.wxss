@@ -1,0 +1,68 @@
+.container{
+  padding:0;
+  position:relative;
+  padding-bottom:140rpx;
+  font-family:微软雅黑;
+}
+page{
+  background:#ffffff;
+}
+.title{
+  font-weight:bold;
+  margin-top:80rpx;
+  margin-bottom:80rpx;
+  font-size:44rpx;
+
+}
+.mobile_input .text-right{
+  text-align:right;
+  font-weight: normal
+}
+.test_input,
+.mobile_input{
+  width:100%;
+  display:flex;
+  flex-direction:row;
+  font-size:34rpx;
+  border-bottom:1px solid #d6d7dc;
+  padding:40rpx 25rpx;
+  align-items:center;
+  box-sizing:border-box;
+}
+.test_input text,
+.mobile_input text{
+  text-align:left;
+  margin-left:40rpx;
+  font-weight: 700
+}
+.mobile_input input{
+  width:280rpx;
+  text-align:left;
+  padding-left:30rpx;
+}
+.test_input input{
+  width:460rpx;
+  text-align:left;
+  padding-left:30rpx;
+}
+.mobile_input button{
+  width:auto;
+  font-size:18rpx;
+  padding:0rpx 8rpx;
+  background:#1AAD19;
+  color:#ffffff;
+}
+.submit_btn{
+  margin-top:60rpx;
+  width:90%;
+}
+.errortip_box{
+  height:100rpx;
+  width:90%;
+}
+.errortip{
+  font-size:30rpx;
+  margin-top:10rpx;
+  color:#ccc;
+  width:70%;
+}

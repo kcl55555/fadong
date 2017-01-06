@@ -26,8 +26,9 @@ page{
   width:100%;
 }
 .cover .coveravatar image{
-  width:50rpx;
-  height:50rpx;
+  width:60rpx;
+  height:60rpx;
+  border-radius:60rpx
 }
 .coveravatar text{
   position:relative;

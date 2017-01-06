@@ -17,7 +17,10 @@ Page({
     monthmax: '', //本月最高步数，作为基准线使用
     btnhide:true,
     fadong_session:'',
-    friend_session:''
+    friend_session:'',
+    monthtotal:'',
+    today:'',
+    lastmonth:''
   },
   onShareAppMessage: function () {
     return {
@@ -78,7 +81,7 @@ Page({
                   that.hidebtn();  
             };
             wx.request({
-              url:'mine.php',
+              url:'https://44165841.peinipao.wang/getUserData',
               data:{
                 friend_session: res.data
               },
@@ -88,13 +91,24 @@ Page({
                     hum_num: res.data.hum_num,  //几个巨无霸
                     half_hum: res.data.half_hum,  //有没有0.5个巨无霸 ，如果巨无霸是整数，返回0
                     monthdata: res.data.monthdata,
-                    monthmax:res.data.monthmax //本月最高步数，作为基准线使用
+                    monthmax:res.data.monthmax, //本月最高步数，作为基准线使用
+                    monthtotal:res.data.monthtotal
                 })
               }
             })
         } 
       });
-  
+
+    var day= new Date();
+    var last=new Date(day.getTime()-2592000000);
+    var day_month=day.getMonth()+1;
+    var last_month=last.getMonth()+1;
+    var day_day=day.getDate();
+    var last_day=last.getDate();
+    that.setData({
+      today: day_day+'/'+day_month,
+      lastmonth: last_day+'/'+last_month
+    })
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function(userInfo){
       //更新数据

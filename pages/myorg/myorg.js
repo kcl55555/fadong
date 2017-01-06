@@ -13,12 +13,15 @@ Page({
     btn_false: false,
     fadong_session: '',
     org_id:'',
+    mygrade:'',
+    mymonthgrade:'',
     mydata:{
       // avatar:'/src/coveravatar.png',
       // nickName:'爱是不可名zhide cuowu',
       // steps:6667843,
       // likes:1,
-      // grade:3
+      // grade:3,
+      // my_session: '1333'
 
     },
     mymonthdata:{
@@ -26,7 +29,8 @@ Page({
       // nickName:'爱是不可名zhide cuowu',
       // steps:6667823,
       // likes:454,
-      // grade:3
+      // grade:3,
+      // my_session: '1333'
     },
     friendsdata:[
         // {
@@ -121,11 +125,11 @@ Page({
     })
   },
   linktomine: function(e) {
-    var namecode=e.currentTarget.dataset.namecode;
+    var friend_session=e.currentTarget.dataset.fadong_session;
     var hidebtn=e.currentTarget.dataset.hidebtn;
     wx.setStorage({
-      key:"namecode",
-      data:namecode
+      key:"friend_session",
+      data:friend_session
     }),
     wx.setStorage({
       key:"hidebtn",
@@ -148,11 +152,38 @@ Page({
 
   },
   showMonth:function(){
+    var that=this;
     this.setData({
       show:0,
       off:1
-    })
+    });
+    
   },
+  setMygrade:function(){
+    var that=this;
+    for(var i=0;i<=that.data.friendsdata.length;i++){
+                if(that.data.friendsdata[i].friend_session==that.data.mydata.my_session){
+                  console.log('woshii'+i);
+                  console.log(that.data.friendsdata[i].friend_session)
+                  that.setData({
+                      mygrade: i
+                  })
+                }
+            };
+  },
+  setMymonthgrade:function(){
+    var that=this;
+    for(var j=0;j<=that.data.friendsmonthdata.length;j++){
+                if(that.data.friendsmonthdata[j].friend_session==that.data.mymonthdata.my_session){
+                  console.log('woyeshii'+j);
+                  that.setData({
+                      mymonthgrade: j
+                  });
+                }
+
+            };
+  },
+  
   onLoad: function () {
    
 
@@ -182,10 +213,10 @@ Page({
     });
 
       wx.request({//获取步数和好友列表的接口
-        url: 'http://127.0.0.1:5757/getMyOrgData', 
+        url: 'https://44165841.peinipao.wang/getMyOrgData', 
         data: {
-           fadong_session: that.data.fadong_session,
-              org_id: that.data.org_id
+           fadong_session: 'fkxq1jrtxeyj0jmmm5qllvbxpn666fd7c4an7aw7209ljx7tna20lfo1oga2f6h0w6rhdy1nnsh3erdf661efbmiakc0wl0cyrw5akdblexr9e1r35jtf3wy8qifjbo5tque037dld2va15ulvqaff1u8y7qj5drq8jbi2v4',//that.data.fadong_session,
+              org_id: 1, //that.data.org_id
         },
         method: 'POST',
 //   type: 'cors',//'jsonp'
@@ -193,17 +224,25 @@ Page({
             'content-type': 'application/json'
         },
         success: function(res) {
-                var friendsdata=res.data.friendsdata.sort(function(a,b){
+                console.log(res);
+                var friendsdata=res.data.friendsdata.sort(function(b,a){
                   return a.steps-b.steps});
-                var friendsmonthdata=res.data.friendsmonthdata.sort(function(a,b){
+                var friendsmonthdata=res.data.friendsmonthdata.sort(function(b,a){
                   return a.steps-b.steps});
-
+             console.log(res)
             that.setData({
               mydata:res.data.mydata,
               mymonthdata:res.data.mymonthdata,
               friendsdata:friendsdata,
               friendsmonthdata:friendsmonthdata
             }) ;
+            //  console.log(friendsmonthdata[8].friend_session==that.data.mymonthdata.my_session)
+            // that.setMygrade();
+            // that.setMymonthgrade();
+            
+            
+            
+
             // console.log(res)
         },
         error:function(res){

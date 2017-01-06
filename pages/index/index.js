@@ -1,146 +1,88 @@
 //index.js
-//获取应用实例 
+//获取应用实例
 var app = getApp()
 Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
-    btn_text:'获取验证码',
-    btn_second:'',
-    disabled: true,
-    only_phone: 'hate', //防止用户获取完验证码后再次更换手机号的字段
-    phone: '',
-    countbegin: false, //是否在倒数计时中，防止二次输入的bug.
-    testNum: 'love',
-    inputNUm: '',
-    error: false,
-    fadong_session: ''
+    orgInfo:[],
+    fadong_session:''
   },
-  sendmsg:function(){//点击发送验证码按钮动作
-      var that=this;
-       that.setData({
-                 error: false
-             });
-        wx.request({
-          url: 'http://sms4st.cmfree.cn/sms.php', //服务端的接口
-          type: 'cors',//代表跨域
-          method: 'GET',
-          data: {
-             
-             user_phone: that.data.phone
-          },
-          header: {
-              'content-type': 'application/json'
-          },
-          success: function(res) {
-             that.sendSuccess();
-             that.setData({
-                 testNum: res.data, //填写正确的返回的验证码的字段
-                 only_phone: that.data.phone   
-             });
-          }
-    });
+  
+  wxlogin:function(){
+   wx.login({                       //微信登录接口
+      success: function(res) {
 
- },
- inputTest:function(e){
-   var that=this;
-   that.setData({
-       inputNUm: e.detail.value,
-       error: false
-   });
- },
- submitTest: function(){
-  // wx.redirectTo({
-  //     url: '../login/login'
-  //   });
- wx.setStorage({
+        if (res.code) {
+          // 发起网络请求
+          console.log(res.code);
+          wx.request({
+            url: app.globalData.mysite+'login',
+            data: {
+              code: res.code
+            },
+            header: {
+             'content-type': 'application/json'
+            },
+            success: function(res) {// res的data里面应包含这几个字段：bindphone: true/false, 3rd_session: xxx, orgInfo:[{name:陪你跑, avatar: '...xx.jpg',org_id: '1111'}]
+               wx.setStorage({
                 key: 'fadong_session',
-                success:function(res){
-                    that.setData({
-                      fadong_session: res.data
-                    })
+                data:res.data.fadong_session
+              })//储存用户 3rd_session
+
+              wx.setStorage({
+                key: 'orgInfo',
+                data: res.data.orgInfo
+              }); //储存用户的组织信息
+
+             // wx.setStorage({
+             //    key: 'bindphone',
+             //    data: res.data.bindphone
+             //  }); //储存用户的组织信息
+  
+    //以下决定进入那个页面
+
+          if(res.data.bindphone){ //如果用户已经绑定过手机号码
+                console.log('bindphone true');
+                console.log(res.data.orginfo.org);
+                if(res.data.orginfo.org.length == 1){
+                   wx.setStorage({
+                    key: 'org_id',
+                    data: res.data.orginfo.org[0].org_id
+                   });
+
+                   wx.redirectTo({
+                        url: '../myorg/myorg'
+                      })
                 }
-              })//获取fadong_session
-  var that=this;
-     if(that.data.inputNUm==that.data.testNum && that.data.only_phone==that.data.phone){
-        
-      wx.request({
-        url:'http://sms4st.cmfree.cn/sms.php',
-        data:{
-          user_phone: that.data.only_phone,
-          fadong_session: that.data.fadong_session
-        },
-        success:function(res){
-           
-           wx.navigateTo({
-            url: '../login/login'
-           });
-           that.setData({
-            testNum: 'love'
-          })
+                else{
+                   wx.redirectTo({
+                        url: '../login/login'
+                      })
+                }
 
-        }
-      })    
-     }
-     else{
-        that.setData({
-          error: true
-        })
-     }
- },
-  phoneInput:function(e){//监听输入手机号码动作
-    var that=this
-     if((/^1[34578]\d{9}$/.test(e.detail.value)) && !that.data.countbegin){
-          that.setData({
-            disabled: false,
-            phone: e.detail.value,
-            error: false
-        });
-          
-     }
-  }, 
-  sendSuccess:function(){// 验证码发送成功回调函数
-    var that=this
-
-        that.setData({
-          btn_text:'s后重发',
-          btn_second:'60',//此处可定义多少秒后重新发送短信
-          disabled: true,
-          countbegin: true
-        });
-
-    var second=that.data.btn_second;
-    var timer=setInterval(function(){//倒数计时器
-        second--;
-      if(second>=0)
-          {
-            that.setData({
-              btn_second:second
-            });
+          }else{
+                   console.log('bindphone false');
+                   wx.redirectTo({
+                        url: 'pages/regist/regist'
+                      })
           }
-      else
-        {
-          clearInterval(timer);
-          that.setData({
-            btn_text:'获取验证码',
-            btn_second:'',
-            disabled: false
-          });
+
+
+            }
+          })
         }
 
-
-    },1000);
-
-      wx.showToast({
-        title: '验证码发送成功，请注意查收',
-        icon: 'success',
-        duration: 2000
-      });
-
-  },
+     else {//如果获取code失败
+          console.log('获取用户登录态失败！' + res.errMsg)
+        }
+        
+      }
+    });
+ },
   onLoad: function () {
     console.log('onLoad')
-    
+    console.log(app.globalData.mysite)
     var that = this
     //调用应用实例的方法获取全局数据
     app.getUserInfo(
@@ -150,7 +92,11 @@ Page({
         userInfo:userInfo
       })
     });
-
+  var timer=null;
+  timer=setInterval(function(){
+   that.wxlogin();
+   clearInterval(timer)
+  },2500)
 
   }
 
