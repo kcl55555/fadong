@@ -1,0 +1,8 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="usermotto">
+    <image class="user-motto" src="/src/logo.jpg"></image>
+    <br/>
+    <text>发动</text>
+  </view>
+</view>

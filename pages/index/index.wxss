@@ -1,0 +1,42 @@
+
+.usermotto{
+  position:absolute;
+  left:50%;
+  top:40%;
+  transform:translateX(-112rpx);
+  display:flex;
+  filter:alpha(opacity:0);
+  opacity:0;
+  flex-direction:column;
+  animation: showout 2s linear 1s;
+  animation-fill-mode:forwards;
+  -webkit-animation: showout 2s linear 1s;
+  -webkit-animation-fill-mode:forwards;
+  -moz-animation: showout 2s linear 1s;
+  -moz-animation-fill-mode:forwards;
+  -ms-animation: showout 2s linear 1s;
+  -ms-animation-fill-mode:forwards;
+  -o-animation: showout 2s linear 1s;
+  -o-animation-fill-mode:forwards;
+}
+@keyframes showout{
+  from{
+    opacity:0;
+    filter:alpha(opacity:0);
+    top:40%;
+  }
+  to{
+    filter:alpha(opacity:1);
+    opacity:100;
+    top:30%;
+  }
+}
+.usermotto text{
+  text-align:center;
+  margin-top:50rpx;
+}
+.user-motto {
+  width:224rpx;
+  height:151rpx;
+
+}

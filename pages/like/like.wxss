@@ -1,0 +1,38 @@
+.container{
+  padding:0;
+  position:relative;
+  padding-bottom:140rpx
+}
+page{
+  background:#e1e0de;
+}
+
+.therow {
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+  width:100%;
+  align-items:center;
+  box-sizing:border-box;
+  padding:20rpx;
+  background:#ebebeb;
+  margin-bottom:2rpx;
+}
+.infobox{
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  font-size:40rpx;
+}
+.infobox image{
+  width:100rpx;
+  height:100rpx;
+  border-radius:50%;
+  margin-right:10rpx;
+}
+.timebox{
+   display:flex;
+  flex-direction:row;
+  font-size:26rpx;
+  color:#999999;
+}

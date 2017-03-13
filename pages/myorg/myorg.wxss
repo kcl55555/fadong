@@ -1,0 +1,172 @@
+.container{
+  padding:0;
+  position:relative;
+  padding-bottom:140rpx;
+}
+page{
+  background:#e1e0de;
+}
+
+.cover{
+  width:100%;
+  background-size: cover;
+  align-items:center;
+}
+.cover .coverpic{
+  width:100%;
+  position:relative;
+}
+.cover .coveravatar{
+  position:absolute;
+  /*top:100rpx;*/
+  top:20rpx;
+  text-align:center;
+  color:#fff;
+  line-height:80rpx;
+  width:100%;
+}
+.cover .coveravatar image{
+  width:60rpx;
+  height:60rpx;
+  border-radius:60rpx
+}
+.coveravatar text{
+  position:relative;
+  top:-10rpx;
+  margin-left:10rpx;
+  font-size:35rpx;
+}
+.data_list{
+  background:#ebebeb;
+  display:flex;
+  flex-direction:row;
+  width:100%;
+  justify-content:space-between;
+  box-sizing:border-box;
+  padding:35rpx 50rpx 35rpx 80rpx;
+}
+.friendsdata{
+  background:#ebebeb;
+  display:flex;
+  flex-direction:row;
+  width:100%;
+  justify-content:space-between;
+  box-sizing:border-box;
+  padding:20rpx 50rpx 20rpx 0rpx;
+  margin-top:2rpx;
+}
+.mydata{
+  padding:35rpx 50rpx 35rpx 50rpx;
+  position:relative;
+  top:-10px;
+}
+.myinfobox{
+  display:flex;
+  flex-direction:row;
+}
+.myinfo{
+  display:flex;
+  flex-direction:column;
+}
+.mygrade{
+  color:#555555;
+  font-size:30rpx;
+}
+.nickname{
+  color:#000000;
+  font-size:36rpx;
+  line-height:60rpx;
+  white-space:nowrap; 
+  text-overflow:ellipsis; 
+  overflow: hidden; 
+  width:200rpx;
+}
+.databox{
+  display:flex;
+  flex-direction:row;
+}
+.databox text{
+  text-align:right;
+}
+.steps{
+  font-size:60rpx;
+  line-height:100rpx;
+  width:250rpx;
+  /*text-align:left;*/
+  /*font-weight:bold;*/
+  margin-right:20rpx
+}
+.stepsyellow{
+  color:#f7941d;
+}
+.stepsgreen{
+  color:#1aad19;
+}
+.avatar{
+  width:100rpx;
+  height:100rpx;
+  margin-right:20rpx;
+  border-radius:100rpx;
+}
+.likepic{
+  width:50rpx;
+  height:50rpx;
+}
+.middlebox{
+  display:flex;
+  justify-content:center;
+  width:50rpx;
+}
+.databox .likebox{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  color:#555555;
+}
+.changetab{
+  display:flex;
+  flex-direction:row;
+  text-align:center;
+  width:100%;
+  background:#ebebeb;
+  margin-bottom:16rpx;
+
+}
+.changetab view{
+  width:50%;
+  line-height: 96rpx
+}
+.changetab view.active{
+  border-bottom:6rpx solid #1aad19;
+
+}
+
+.infobox{
+  font-size:40rpx;
+  height:100%;
+  display:flex;
+  align-items:center;
+  flex-direction:row;
+}
+.order_num{
+  margin-right:20rpx;
+  text-align:right;
+  width:50rpx;
+}
+.font_small{
+  font-size:26rpx;
+}
+.likes_num{
+  font-size:30rpx;
+}
+.orgpkbtn{
+  position:fixed;
+  bottom:0;
+  background:#ebebeb;
+  width:100%;
+  text-align:center;
+  color:#010101;
+  border-radius:0;
+  padding:15rpx;
+  box-sizing:border-box;
+}

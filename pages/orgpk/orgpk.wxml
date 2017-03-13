@@ -1,0 +1,133 @@
+<!--index.wxml-->
+<view class="container">
+<block wx:if="{{show}}">
+	<!-- 封面图片 -->
+<view class="cover data_today">
+ <image class="coverpic" src="/src/cover_pic.jpg"></image>
+ <view class="coveravatar">
+ 	<image  src="http://wx.qlogo.cn/mmhead/{{friendsdata[0].avatar}}/0"   data-fsession="{{friendsdata[0].friend_session}}" data-hidebtn="{{btn_false}}" data-avatar="{{friendsdata[0].avatar}}"></image>
+ 	<text>{{friendsdata[0].nickName}}占领了封面</text>
+ </view>	 	
+</view>
+<!-- 封面图片结束 -->
+<!-- 我的数据开始 -->
+<view class="mydata data_list">
+	<view class="myinfobox"  data-fsession="{{mydata.my_session}}" data-hidebtn="{{btn_false}}" data-avatar="{{mydata.avatar}}">
+		<image class="avatar" src="http://wx.qlogo.cn/mmhead/{{mydata.avatar}}/0"></image>
+		<view class="myinfo">
+			<text class="nickname">{{mydata.nickName}}</text>
+			<text class="mygrade">第{{mygrade+1}}名</text>
+		</view>
+	</view>
+	<view class="databox">
+		<text  class="steps stepsyellow" wx:if="{{mydata.steps >= 10000}}">{{mydata.steps}}</text>
+		<text  class="steps stepsgreen" wx:else>{{mydata.steps}}</text>
+		<!-- <view class="likebox" bindtap="linktolike">
+			<text class="likes_num">{{mydata.likes}}</text>
+			<image class="likepic" src="{{likepic}}" wx:if="{{mydata.likes}}"></image>
+			<image class="likepic" src="{{unlikepic}}" wx:else ></image>
+		</view> -->
+	</view>
+</view>
+<!-- 我的数据结束 -->
+<!-- 今日和本月数据切换 -->
+<view class="changetab">
+	<view class="thisday active" bindtap="showToday">今日排行</view>
+	<view class="thismonth" bindtap="showMonth">本月排行</view>
+</view>
+<!-- 今日和本月数据切换结束 -->
+<!-- 朋友数据开始 -->
+<block wx:for="{{friendsdata}}">
+<view class="friendsdata">
+	<view class="infobox"  data-hidebtn="{{btn_true}}" data-fsession="{{item.friend_session}}" data-avatar="{{item.avatar}}">
+		<text class="order_num" wx:if="{{index <100}}">{{index+1}}</text>
+		<text class="order_num font_small" wx:else>{{index}}</text>
+		<image class="avatar" src="http://wx.qlogo.cn/mmhead/{{item.avatar}}/0"></image>
+		<text class="nickname">{{item.nickName}}</text>
+	</view>
+	<view class="databox">
+		<text class="steps stepsgreen" wx:if="{{item.steps < 10000}}">{{item.steps}}</text>
+		<text class="steps stepsyellow" wx:else>{{item.steps}}</text>
+<!-- <view class="middlebox">
+		<view class="likebox">
+			<text class="likes_num">{{item.likes}}</text>
+
+			<image class="likepic" wx:if="{{!item.mylike}}" src="{{unlikepic}}" bindtap="likeit" data-namecode="{{item.namecode}}"></image>
+
+			<image class="likepic" wx:else src="{{likepic}}"></image>
+		</view>
+</view> -->
+	</view>
+</view>
+</block>
+</block>
+<!-- 朋友数据结束 -->
+
+
+
+<!-- 本月数据 -->
+
+<!-- 封面图片 -->
+<block wx:if="{{off}}">
+<view class="cover data_month">
+ <image class="coverpic" src="/src/cover_pic.jpg"></image>
+ <view class="coveravatar">
+ 	<image  src="http://wx.qlogo.cn/mmhead/{{friendsmonthdata[0].avatar}}/0"   data-fsession="{{friendsmonthdata[0].friend_session}}" data-hidebtn="{{btn_false}}" data-avatar="{{friendsmonthdata[0].avatar}}"></image>
+ 	<text>{{friendsmonthdata[0].nickName}}占领了本月封面</text>
+ </view>	 	
+</view>
+<!-- 封面图片结束 -->
+<!-- 我的数据开始 -->
+<view class="mydata data_list">
+	<view class="myinfobox"  data-fsession="{{mymonthdata.my_session}}" data-hidebtn="{{btn_false}}" data-avatar="{{mymonthdata.avatar}}">
+		<image class="avatar" src="http://wx.qlogo.cn/mmhead/{{mymonthdata.avatar}}/0"></image>
+		<view class="myinfo">
+			<text class="nickname">{{mymonthdata.nickName}}</text>
+			<text class="mygrade">第{{mymonthgrade+1}}名</text>
+		</view>
+	</view>
+	<view class="databox">
+		<text  class="steps stepsyellow" wx:if="{{mymonthdata.steps >= 10000}}">{{mymonthdata.steps}}</text>
+		<text  class="steps stepsgreen" wx:else>{{mymonthdata.steps}}</text>
+		<!-- <view class="likebox" bindtap="linktolike">
+			<text class="likes_num">{{mymonthdata.likes}}</text>
+			<image class="likepic" src="{{likepic}}" wx:if="{{mymonthdata.likes}}"></image>
+			<image class="likepic" src="{{unlikepic}}" wx:else ></image>
+		</view> -->
+	</view>
+</view>
+<!-- 我的数据结束 -->
+<!-- 今日和本月数据切换 -->
+<view class="changetab">
+	<view class="thisday" bindtap="showToday">今日排行</view>
+	<view class="thismonth active" bindtap="showMonth">本月排行</view>
+</view>
+<!-- 今日和本月数据切换结束 -->
+<!-- 朋友数据开始 -->
+<block wx:for="{{friendsmonthdata}}">
+<view class="friendsdata">
+	<view class="infobox"  data-hidebtn="{{btn_true}}" data-fsession="{{item.friend_session}}" data-avatar="{{item.avatar}}">
+		<text class="order_num" wx:if="{{index <100}}">{{index+1}}</text>
+		<text class="order_num font_small" wx:else>{{index}}</text>
+		<image class="avatar" src="http://wx.qlogo.cn/mmhead/{{item.avatar}}/0"></image>
+		<text class="nickname">{{item.nickName}}</text>
+	</view>
+	<view class="databox">
+		<text class="steps stepsgreen" wx:if="{{item.steps < 10000}}">{{item.steps}}</text>
+		<text class="steps stepsyellow" wx:else>{{item.steps}}</text>
+<!-- <view class="middlebox">
+		<view class="likebox">
+			<text class="likes_num">{{item.likes}}</text>
+
+			<image class="likepic" wx:if="{{!item.mylike}}" src="{{unlikepic}}" bindtap="likeit" data-namecode="{{item.namecode}}"></image>
+
+			<image class="likepic" wx:else src="{{likepic}}"></image>
+		</view>
+</view> -->
+	</view>
+</view>
+</block>
+</block>
+<!-- <text class="footline">---我也是有底线的---</text> -->
+</view>
+<button class="orgpkbtn" bindtap="linktoorg">我的组织</button>
